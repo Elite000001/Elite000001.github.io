@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<!-- saved from url=(0157)https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+    <title>Learn</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-param" content="authenticity_token">
+
+    
+    <meta name="honeybadger-api-key" content="hbp_cNwxNo1IBsgAllwHYllzwn3ElCmi7o2glTun"><meta name="honeybadger-environment" content="prod"><meta name="honeybadger-revision"><meta name="honeybadger-user-id" content="561fd55a-fcb8-4a08-913e-8510f53d7137">
+    <script>
+//<![CDATA[
+window.gon={};gon.navigationConfig={"passportUrl":"#","settingUrl":"https://auth.stackup.dev/web/my/account","navItems":[{"title":"Earn","url":"https://earn.stackup.dev","icon":"earn","active":false},{"title":"Learn","url":"https://earn.stackup.dev/learn","icon":"learn","active":true},{"title":"Hackathon","url":"https://hackathon.stackup.dev","icon":"hackathon"}]};gon.user={"firstName":"","lastName":"","username":"mrbeast","image":""};gon.socialIconList={"iconKeys":["telegram","x","discord","linkedin"]};
+//]]>
+</script>
+    <link rel="stylesheet" href="./Learn_files/tailwind-web-f1d523e7e55f97101f257dffd5c6a3f78154bf04564ae0f82126b37c53f83a98.css" data-turbo-track="reload">
+    <link rel="stylesheet" href="./Learn_files/application-050527c3e2cb06834812a4813ec72462d49008c1a2925832213ab7c6f6e6b0dc.css" data-turbo-track="reload">
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "@rails/request.js": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/requestjs-c7150df01ef8f2501194fdc0acfaa04747b98cf4295882aece676b4235edc075.js",
+    "application": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/application-7ffb6b67deaf07e50fae3ed73c64362929f7717222e9af66cebd8f2a569d97ab.js",
+    "@hotwired/turbo-rails": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/turbo.min-98e6355e8552e475785204b5cc105743ddeb0ceb0c04f4f5ee1b16db500157cf.js",
+    "@hotwired/stimulus": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@hotwired--stimulus-379f09adbcd004e5b2c2793635d128b6e72c08d1ef5337bf8a5d1e260aaa403e.js",
+    "@hotwired/stimulus-loading": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "utils/helper": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/utils/helper-ca114e436f78dc8891e8a01177da72671652582391a79ed68fe7e9d944526c6f.js",
+    "utils/htm_create_element": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/utils/htm_create_element-33465442cbceedb4c9d41ad346bf2a93768495b64be6867d2a0eb148cc793f17.js",
+    "@rails/activestorage": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@rails--activestorage-5c8d84ec504a53ac574def28e80b50a2b9a1e2b8fcb65e75cea0887a9212ddd8.js",
+    "htm": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/htm-412b6e23f1e952a0e1c9e33bb4c4762ed8e8e75f82bd18554bfa853f0f6f12cb.js",
+    "react": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/react-3ef252b44acac222f0832dd516fcbc4d0e1719eb7b6a99d88d3588e4ee608523.js",
+    "react-dom": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/react-dom-67f313376d9e48988904669f4c701a36cef4f4d560371c500c6f386a31ceb8b0.js",
+    "scheduler": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/scheduler-02b52ee66ddce92ac07f4921de26d9d5f7aacbf7de7bfd88ef9466ecaadd7e5c.js",
+    "object-assign": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/object-assign-ab10d021d8b5fbc8aab7bd50649d8c644eeda35f2e0d9e6d96b5b114f75649d8.js",
+    "react/jsx-runtime": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/jsx-runtime-7427514fad9602c63b3020d43b9c88ef917d3b5435e6ba530b7433b3e8096cc6.js",
+    "@tribex/stackup-react-ui": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@tribex--stackup-react-ui-e065516a4cb8c68c9eb71c672c3fd93e3bd3f38920457ad1092676fc0df38225.js",
+    "stimulus-animated-number": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-animated-number-020f8f5d3fb4c593f118d4f7ccff05fc1f8a31fef22bb2887fcc9e126c58d1c1.js",
+    "stimulus-reveal-controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-reveal-controller-e4715d1fbfde10302aff1b43091b05aa1cc5a8c33d0699fecc4575b38b28bd33.js",
+    "stimulus-clipboard": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-clipboard-bc91e4c1cd48c7946004409934a9c8f1980776eda7ba962764ad392d8d0ed17b.js",
+    "stimulus-multiselect": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-multiselect-67b00de6875f970c89eaaae0b1a62b51b33edbd4ef482d31f11c408b7157d49e.js",
+    "stimulus-scroll-to": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-scroll-to-f674996091cb0f0c9c918919712b3b1b937848b7a3223d8993b5e8356ebb391d.js",
+    "stimulus-carousel": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-carousel-be699975558ea256db58640b04248232795c62985ac412267098666a9630b31e.js",
+    "ssr-window": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/ssr-window-4fe7d3ba9c5f99c9cabd56d1f850db5e1ac465d9f4b55e9270fd14c8055f5f76.js",
+    "swiper/bundle": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper--bundle-a59bc15a2e9b1194c209e225f99a00b794ae7fce9c624b1904076dc5e0e3ff59.js",
+    "swiper-bundle/q_Dmumbx": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper-bundle/q_Dmumbx-744d64e5cb5cf6e1c7e7b9cf8f2bdb07c4b8d3f6049a1e65b85135cf3129b3b8.js",
+    "swiper-bundle/u9_e3QsJ": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper-bundle/u9_e3QsJ-6ff04a09f7618927bcd4015ffa1e7d283c5cad60b789c3f95f9b5885d0717583.js",
+    "swiper-bundle/aUCo-AuJ": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper-bundle/aUCo-AuJ-2e56ecb39bad13b69d41d2460f425048e953a63e8b2a5c5ef59ae5730dc7df29.js",
+    "sortablejs": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/sortablejs-df5ea22b27dc8daf7aefda9f5b803f797c3b40d1eb3d8fcb8eebfb44e9a9c4ad.js",
+    "@honeybadger-io/js": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@honeybadger-io--js-94460d64db4c055b29fa8e20ea43989303e461308c64fceeaa9a9033462c31c8.js",
+    "@editorjs/editorjs": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--editorjs-add75ff66c39b34b07921cfe241f809eb008ca067137586ccbd2bf34c3f632e9.js",
+    "@editorjs/header": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--header-54bb0b2deaf47906922ae0ff661246736005c45109b065b593051ac8dbb3497f.js",
+    "@editorjs/quote": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--quote-a7d5df42c8e1d51b3f429c7aadefbb43ebe778cae960d130527f0f6a62c4a787.js",
+    "@editorjs/embed": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--embed-c9f3d5bb6b70e087b05cfc09e8b6fd5e6578cb952d7d433fb3b07cf2d03f749c.js",
+    "@editorjs/marker": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--marker-e563de94c70d27b88d1d9631723a4c9c8917db501169e1ffade5957f6294bb0f.js",
+    "@editorjs/underline": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--underline-fa70a67a8f5ae70c7dd252717a17471c7d2e95b5b6eed60d832301123c343245.js",
+    "editorjs-html": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/editorjs-html-86248f600ce08990eda19a1c91a1c609a3147ea95cb0628cf999cc21728f2e2c.js",
+    "@editorjs/list": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--list-9c9bac9cefa18aebaaeeebfd83e790b3d1bca9e38e688715fde3eeaf301092d6.js",
+    "@editorjs/nested-list": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--nested-list-7e03bc08ec42b4f44dd0d2e6bf0a6505442490ce517ac0a83d0b42fb2c396957.js",
+    "@editorjs/raw": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--raw-4c618c32d89a45815ede7320444d9bb41608bd055040a809fee701e884083872.js",
+    "@editorjs/inline-code": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--inline-code-a4c5eac60c88c4e277dd2927ad6c7e6ce888ec1940f9eddf6b5cd864dbc3a692.js",
+    "@editorjs/simple-image": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--simple-image-e3054be8332980cf6ab47855446c38eeaad32257fefbe6ea60fde8b1ec3fc5b1.js",
+    "@editorjs/image": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--image-aecb5878cd3ebaa74141426f88cad25c9f3761ede0830a86a2978496c3ca577e.js",
+    "editorjs-text-color-plugin": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/editorjs-text-color-plugin-cd7b57c4060603fc13c4a04cdfc6967228bde74909bb5707383e72e2ce54ca46.js",
+    "editorjs-codeflask@main": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/editorjs-codeflask@main-e0aa077ab1b095b6860bf63ae3de9b6af37bb915d9bd698d3a506950077cc34a.js",
+    "stimulus-dropdown": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-dropdown-c22aa432c058a134a0fcd4dfd4cdaf627a67b13b47000c246b959c8811e457b5.js",
+    "hotkeys-js": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/hotkeys-js-496b2fb9b0b39a0cc43549f576f20d13e15e9ceb18cc316d7fe1fcfe242715f1.js",
+    "stimulus-use": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-use-8b0ae74337c38828f34f74e6e7a8eef10090e122ab782d33db0efbec84f3d6d4.js",
+    "prismjs": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs-a128eea38b363badd3291275b8dc8ea20e5b7c856d80cac0963963c707cfb8f8.js",
+    "prismjs/plugins/line-numbers/prism-line-numbers": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--line-numbers--prism-line-numbers-54b2ea6b93174a6f0e395259e7b81677dae2b690dd8a8e78bb57c9516bb26848.js",
+    "prismjs/plugins/toolbar/prism-toolbar": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--toolbar--prism-toolbar-bd96e12a89c91c3335c90863ad85bc704d5d766382989dfda21b005528d9b0ec.js",
+    "prismjs/plugins/show-language/prism-show-language": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--show-language--prism-show-language-1ae70e19b14d2c31d91de6af2ff7d781c632da5d2be20592e6bdf462732fb860.js",
+    "prismjs/plugins/autoloader": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--autoloader--prism-autoloader.min.js-1dd99a8498777499aa00ecb35a7182bea97eb7be9cd88d25516a42cd664fd683.js",
+    "prismjs/components/prism-groovy": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-groovy-1dd3f9f9a506f7792486a654e1ef8fe0c9cebb8873319115c8894f849df10c51.js",
+    "prismjs/components/prism-yaml": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-yaml-4bed01bc2550f473059ac61ef9dc763b70d9e10f02f6f426c282ed8bf2f87792.js",
+    "prismjs/components/prism-git": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-git-87e2efad35f6d7ad28760acad7789c90f414e092a8f207cf49dccf11a5611485.js",
+    "prismjs/components/prism-mongodb": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-mongodb-cd2e52bd7b15134245a2b4e651c8d0e42ef54ac5e3f327bdfb9d7c778487e2e8.js",
+    "prismjs/components/prism-typescript": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-typescript-85c1e49b8450f67591b3c5e5633d5477a616c024da771133748a75948ceccce8.js",
+    "prismjs/components/prism-jsx": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-jsx-0a66b78816919142cba29f4a9934a99023b6a99bfa3438bbee63c2aff460c8f8.js",
+    "prismjs/components/prism-tsx": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-tsx-189c9ef290c4aacf9829f57a666b42348751e64562e222539943b4185d590e06.js",
+    "prismjs/components/prism-regex": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-regex-a1381f9a8566c896a203171411fd8cdbce2e0e4d27da9775d981d508761ffd51.js",
+    "prismjs/components/prism-scss": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-scss-5564901b359c232b7614f1d1da652c3c9c92c7861726bc08cab90306f5e6e12a.js",
+    "prismjs/components/prism-matlab": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-matlab-28d2ccc02e9ce9038f0607c49e9e44789d2f3f74c816284e17493d38bc27407b.js",
+    "prismjs/components/prism-r": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-r-69c917f1e6ad93680312b2441467654796936e5387cd3ff4dfe5031a1702cb40.js",
+    "prismjs/components/prism-rust": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-rust-0c0a0396de8818e245682e75f174693c2347212f9b3b5b191e50aa38e86e3185.js",
+    "prismjs/components/prism-solidity": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-solidity-92bdd3cde9dfe3dc288fed3a5895c748a4ad88b70f770ea036aa87e1ac27685d.js",
+    "prismjs/components/prism-sql": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-sql-5506064463b8c66c086660f6062b739c6c1ad64d1629abab24b6d2bcf9defb34.js",
+    "prismjs/components/prism-wasm": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-wasm-fcc38bccc8c72cbba6835c25d9ceba2a9363376a3ba62efc482ef630a7a48b1a.js",
+    "prismjs/components/prism-docker": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-docker-e37b50495a42874dc207d61f32b507df6d8428a5315b8d0b1a8e478da12f1fb2.js",
+    "prismjs/components/prism-graphql": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-graphql-eb4abd5293cd97a7151c8bda2112e45f6a84d5056f6234a4a76e2e1075e846db.js",
+    "prismjs/components/prism-makefile": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-makefile-d059d6fddcc9ec428538918cb8e670ab9bef8a6aae16763f510a551ca61bc872.js",
+    "prismjs/components/prism-markdown": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-markdown-87065b622100365afe2b8d9b04727f324d65e74f39d9df8c24125b8d7ecb604f.js",
+    "prismjs/components/prism-json": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-json-b353eafcd973025043f7e7d226b44a42fe675aac8e51c263b98261228f1ae051.js",
+    "prismjs/components/prism-python": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-python-3e6a58bf00207cf83ce97a652f2deff4cbbfe75409184210a1d244aae0d319dc.js",
+    "prismjs/components/prism-protobuf": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-protobuf-80f7eb35bc3f250f03be6e853980ba6a9a82f4f0141ce9bbaa8b728faad8796d.js",
+    "prismjs/components/prism-csharp": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-python-3e6a58bf00207cf83ce97a652f2deff4cbbfe75409184210a1d244aae0d319dc.js",
+    "stackup_bridge/current_location": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stackup_bridge/current_location-744f2ed2e240424bf914465ff3fe735ddfd0a9ee2d0a3f64a39073d878626bfa.js",
+    "stackup_bridge/provisioning_redirect": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stackup_bridge/provisioning_redirect-7b3fcb57e3e6bc16826db1a5a0806667b66142550ee8478e3ccbc184d4936f55.js",
+    "stackup_bridge/stackup_bridge_utils": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stackup_bridge/stackup_bridge_utils-91ca7208f3a598c9cbbb996d4d675990d6992f2f5bce5c44b38396d0ff943aa2.js",
+    "controllers/anchor_to_scroll_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/anchor_to_scroll_controller-f1724c0b5a7020cca03b37a02ab50a85e7ba2d5fc7cc4f552ed1143bdd122cf7.js",
+    "controllers/application": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/application-97f13946d3892b4b51e252cdb87dbd96af7484a464b8e58f07679045cf663af2.js",
+    "controllers/auto_perform_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/auto_perform_controller-4caff5b39b0470dcdbf675abc70c27e7dcda2252eca9a4bdfa2a068015dc526c.js",
+    "controllers/back_to_top_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/back_to_top_controller-ea95a34ae346d4ec3f1281c7e855ed56f0bef47a040f7fefa7bd7a1726661c77.js",
+    "controllers/character_counter_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/character_counter_controller-6292a9b369a23f3d8bff296a3d0d619dd3e8a0e1c725aaa607b69b00873b66c1.js",
+    "controllers/countdown_second_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/countdown_second_controller-c3a43bf6d82edba62106e4dfe3357f0177e812e638b2022cbfd4e3a03ade9cd1.js",
+    "controllers/countdown_timer_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/countdown_timer_controller-650f1797ff92df19e5ab31b41ccafd8c36a76313c44d0cc8e1d0bd696e6c24d9.js",
+    "controllers/country_select_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/country_select_controller-d0245fd5a6215a5afea1185447215316de97ea14537d33329d1eb934ae1d1f00.js",
+    "controllers/detect_input_change_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/detect_input_change_controller-e61bcd89c71562fae65dacda8a37fe57370134f96d0077c51ee90b2cb07c6b6f.js",
+    "controllers/direct_upload_input_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/direct_upload_input_controller-9d019a7330514d30bc56b616fa364c55d18936af03fdd84bc6e62e6766b9c2be.js",
+    "controllers/dirty_form_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/dirty_form_controller-4d89f1ca08b2f0f8a347699575b4eebdc8636ee64229046a3f620cf197e33012.js",
+    "controllers/drawer_transition_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/drawer_transition_controller-d4fde7d5d3e48737b8f514325b51161b217bf2ce981f1266e2e02a4deb4e545e.js",
+    "controllers/editable_field_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/editable_field_controller-0da78ff712f6bb3ef69f6d37f661125171ae3e060205b14cf7c46d02986ca305.js",
+    "controllers/editor_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/editor_controller-a03faf32f1379360840ae169d5790d8490f09c068ce84a6eae28c54cf323d18c.js",
+    "controllers/expand_all_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/expand_all_controller-39a5b6e44134ab75c97517175b39d100a8223f34b6e9745e379057e5e54349ae.js",
+    "controllers/flash_dispatch_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/flash_dispatch_controller-47dd6f8d022cdd139f8233e7ee8b0df5269649db105b75f4041312b98f21b679.js",
+    "controllers/form_submission_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/form_submission_controller-e333bcf213eecdead8fb9c23e4a82705c8d39385af0f0d7f3da2601a78648576.js",
+    "controllers/frame_missing_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/frame_missing_controller-64b4bced332b2b34753fc9f99d39b642cdde9faddbc127f9ebbbcdc8acc15511.js",
+    "controllers/get_restrictions_follow_country_select_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/get_restrictions_follow_country_select_controller-464769aa97ec561a55899f1fa36adfd9aabeb1e615fa13faf051e2afea1f3f15.js",
+    "controllers/highlight_item_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/highlight_item_controller-19d1b7901e22140217a9b361f0db20e6af7ff7048cef63e6f5db989da1c68135.js",
+    "controllers/image_input_preview_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/image_input_preview_controller-f16448faa12d1f96b00de885dde766557fd76896b85f78571e3e66efca0fcd6e.js",
+    "controllers/in_place_editable_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/in_place_editable_controller-28aff9027f32fd5972185f73f007b4f1cd69484c5e1859e9bf45e7a1b31c4c1c.js",
+    "controllers": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/index-6ca991861f21ae0578905e2740e8c80db8c35c9d2d9d08a9e9d86c10217c9854.js",
+    "controllers/inline_flash_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/inline_flash_controller-7a9a9be0865bbec157b8237d390b2f88a6e833201edc3b4542e9aff0fb2f90b0.js",
+    "controllers/input_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/input_controller-88539e1f2825a309d2ef7ad680ce85b303d0b0712461bbb59a365bc82ce03bd3.js",
+    "controllers/input_sync_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/input_sync_controller-a69026063c6cb4faabe0936fce1de1893aa42a9bb876a5869c8ca3bd9ba4e84e.js",
+    "controllers/link_select_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/link_select_controller-9305cf3118d5c181477bb21999d9b5464a61a075a371ec48a2a9a9da44110cec.js",
+    "controllers/merge_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/merge_controller-91359a0fab6b0656f2da79d729e17d23bc183993e7c59b1bd1b110222cb055bd.js",
+    "controllers/organisation_select_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/organisation_select_controller-0a1c0d08c94f2dbdd544f5d84c313ba21857226ef4676c8ef85f08d216a28690.js",
+    "controllers/password_toggle_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/password_toggle_controller-e7b9e26cf68e5f179a366fd9cd3f63e70081490ce1386803c616ffe05a523fe0.js",
+    "controllers/popover_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/popover_controller-14dfceb5f3ee0095b50d23923212362d070e2cd155a34380db6eba747a2c96c4.js",
+    "controllers/progress_bar_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/progress_bar_controller-bdcad68fdf0a6a8fde3accda3a3660e1da0e6a724e6b4d45d11c935e9f59d5be.js",
+    "controllers/request_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/request_controller-cbfd900571b5524822ac5f5c186fb63d13a5286472836be04ce08dee3546308f.js",
+    "controllers/required_input_form_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/required_input_form_controller-0289634be02e6f1a151c82b6bcd8319647ec0e4db6102b8c92935ae306d50adf.js",
+    "controllers/rich-text-parser/custom_code_flask_parser": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_code_flask_parser-7aea525853aaf7b8d0cd1ac91de390169e75212b2b2590be3c49f2e932d65850.js",
+    "controllers/rich-text-parser/custom_embed_parser": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_embed_parser-20c119836abc1c35f04559522bfb5dba26843756e8a03129d51f33eb0776d271.js",
+    "controllers/rich-text-parser/custom_image_parser": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_image_parser-84d33dc7543ef3aaaeae27c4d4a0af583a3e7883638a2e2ceb121bcc84a985b2.js",
+    "controllers/rich-text-parser/custom_list_parser": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_list_parser-e59917c6ccd6310ec24e935c4fdf762e5a98a6440655d7fece2476e4f1d78839.js",
+    "controllers/rich-text-parser/custom_raw_html_parser": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_raw_html_parser-25fcb4579fb5d8fa5d0a223de50277e84e475d2cf0325ceb746149d99c92f430.js",
+    "controllers/rich-text-parser/custom_simple_list_parser": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_simple_list_parser-6ff62d181384a25fe7a0141744c76a2fd3a311cc454514f7ab8985e5f2357158.js",
+    "controllers/rich_text_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich_text_controller-4e82e3de6b9c2581ff18079e9b65a7bdbfe31240c163affec2eebe0f57f0745c.js",
+    "controllers/router_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/router_controller-a3580fc5841fae7efb32243cc8e7fab8356b53f65906615f44043882a9349d1c.js",
+    "controllers/scroll_spy_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/scroll_spy_controller-8a87ab19b102dad2f762dcd2e836744391cdcde78e93abb35dcad46afdd7c48a.js",
+    "controllers/search_list_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/search_list_controller-59c9e27249c11797b764006f7fc16a1a5fc444dc295c09ffe4eb5185166ce98c.js",
+    "controllers/search_to_focus_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/search_to_focus_controller-802610b0209093a11fabee976f04f1e00af552d803810663c208733945c6a727.js",
+    "controllers/selection_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/selection_controller-5550d5395a427968e767594f4f6ffcd0825686b9ed9fa346b221e1de605b215b.js",
+    "controllers/sidebar_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/sidebar_controller-12133fe1d3519176565f6bacec0079d75cd76cbfaaa98ddca0cc4bab073a996d.js",
+    "controllers/slug_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/slug_controller-21df1c633a9e5feda8260f48fba217efcd68fad50ac6ab802fb0eddde4c5409f.js",
+    "controllers/social_icon_list_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/social_icon_list_controller-10ff6b8ef3b75d22703633d6d97c161aa3a0527a294f4d210b9569bddbc596e1.js",
+    "controllers/sortable_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/sortable_controller-7a739a3b182d9ef0dfeff9ea91715c450641de4c8f1a492f229dd99731a863d7.js",
+    "controllers/timezone_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/timezone_controller-b13fc654adda20af6b4fd4b26cd216e50df85f6ffe636e1d80053c83cc0e4d0a.js",
+    "controllers/tooltip_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/tooltip_controller-b517848f070b0b9ded871d3909fa7f21848c964ae5d8f6271c4b064c382612d6.js",
+    "controllers/turbo_frame_flash_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/turbo_frame_flash_controller-03d1853c33f612779735d2bddbfe8ee4c74fcc2d907b6594dadabc405e2208ce.js",
+    "controllers/turbo_frame_modal_controller": "https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/turbo_frame_modal_controller-dec5dc9f8437cdad2101ac683919f7e96d98fe9e933937ee55c769465d169076.js"
+  }
+}</script>
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/requestjs-c7150df01ef8f2501194fdc0acfaa04747b98cf4295882aece676b4235edc075.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/application-7ffb6b67deaf07e50fae3ed73c64362929f7717222e9af66cebd8f2a569d97ab.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/turbo.min-98e6355e8552e475785204b5cc105743ddeb0ceb0c04f4f5ee1b16db500157cf.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@hotwired--stimulus-379f09adbcd004e5b2c2793635d128b6e72c08d1ef5337bf8a5d1e260aaa403e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/utils/helper-ca114e436f78dc8891e8a01177da72671652582391a79ed68fe7e9d944526c6f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/utils/htm_create_element-33465442cbceedb4c9d41ad346bf2a93768495b64be6867d2a0eb148cc793f17.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@rails--activestorage-5c8d84ec504a53ac574def28e80b50a2b9a1e2b8fcb65e75cea0887a9212ddd8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/htm-412b6e23f1e952a0e1c9e33bb4c4762ed8e8e75f82bd18554bfa853f0f6f12cb.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/react-3ef252b44acac222f0832dd516fcbc4d0e1719eb7b6a99d88d3588e4ee608523.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/react-dom-67f313376d9e48988904669f4c701a36cef4f4d560371c500c6f386a31ceb8b0.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/scheduler-02b52ee66ddce92ac07f4921de26d9d5f7aacbf7de7bfd88ef9466ecaadd7e5c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/object-assign-ab10d021d8b5fbc8aab7bd50649d8c644eeda35f2e0d9e6d96b5b114f75649d8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/jsx-runtime-7427514fad9602c63b3020d43b9c88ef917d3b5435e6ba530b7433b3e8096cc6.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@tribex--stackup-react-ui-e065516a4cb8c68c9eb71c672c3fd93e3bd3f38920457ad1092676fc0df38225.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-animated-number-020f8f5d3fb4c593f118d4f7ccff05fc1f8a31fef22bb2887fcc9e126c58d1c1.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-reveal-controller-e4715d1fbfde10302aff1b43091b05aa1cc5a8c33d0699fecc4575b38b28bd33.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-clipboard-bc91e4c1cd48c7946004409934a9c8f1980776eda7ba962764ad392d8d0ed17b.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-multiselect-67b00de6875f970c89eaaae0b1a62b51b33edbd4ef482d31f11c408b7157d49e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-scroll-to-f674996091cb0f0c9c918919712b3b1b937848b7a3223d8993b5e8356ebb391d.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-carousel-be699975558ea256db58640b04248232795c62985ac412267098666a9630b31e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/ssr-window-4fe7d3ba9c5f99c9cabd56d1f850db5e1ac465d9f4b55e9270fd14c8055f5f76.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper--bundle-a59bc15a2e9b1194c209e225f99a00b794ae7fce9c624b1904076dc5e0e3ff59.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper-bundle/q_Dmumbx-744d64e5cb5cf6e1c7e7b9cf8f2bdb07c4b8d3f6049a1e65b85135cf3129b3b8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper-bundle/u9_e3QsJ-6ff04a09f7618927bcd4015ffa1e7d283c5cad60b789c3f95f9b5885d0717583.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/swiper-bundle/aUCo-AuJ-2e56ecb39bad13b69d41d2460f425048e953a63e8b2a5c5ef59ae5730dc7df29.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/sortablejs-df5ea22b27dc8daf7aefda9f5b803f797c3b40d1eb3d8fcb8eebfb44e9a9c4ad.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@honeybadger-io--js-94460d64db4c055b29fa8e20ea43989303e461308c64fceeaa9a9033462c31c8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--editorjs-add75ff66c39b34b07921cfe241f809eb008ca067137586ccbd2bf34c3f632e9.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--header-54bb0b2deaf47906922ae0ff661246736005c45109b065b593051ac8dbb3497f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--quote-a7d5df42c8e1d51b3f429c7aadefbb43ebe778cae960d130527f0f6a62c4a787.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--embed-c9f3d5bb6b70e087b05cfc09e8b6fd5e6578cb952d7d433fb3b07cf2d03f749c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--marker-e563de94c70d27b88d1d9631723a4c9c8917db501169e1ffade5957f6294bb0f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--underline-fa70a67a8f5ae70c7dd252717a17471c7d2e95b5b6eed60d832301123c343245.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/editorjs-html-86248f600ce08990eda19a1c91a1c609a3147ea95cb0628cf999cc21728f2e2c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--list-9c9bac9cefa18aebaaeeebfd83e790b3d1bca9e38e688715fde3eeaf301092d6.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--nested-list-7e03bc08ec42b4f44dd0d2e6bf0a6505442490ce517ac0a83d0b42fb2c396957.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--raw-4c618c32d89a45815ede7320444d9bb41608bd055040a809fee701e884083872.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--inline-code-a4c5eac60c88c4e277dd2927ad6c7e6ce888ec1940f9eddf6b5cd864dbc3a692.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--simple-image-e3054be8332980cf6ab47855446c38eeaad32257fefbe6ea60fde8b1ec3fc5b1.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/@editorjs--image-aecb5878cd3ebaa74141426f88cad25c9f3761ede0830a86a2978496c3ca577e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/editorjs-text-color-plugin-cd7b57c4060603fc13c4a04cdfc6967228bde74909bb5707383e72e2ce54ca46.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/editorjs-codeflask@main-e0aa077ab1b095b6860bf63ae3de9b6af37bb915d9bd698d3a506950077cc34a.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-dropdown-c22aa432c058a134a0fcd4dfd4cdaf627a67b13b47000c246b959c8811e457b5.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/hotkeys-js-496b2fb9b0b39a0cc43549f576f20d13e15e9ceb18cc316d7fe1fcfe242715f1.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stimulus-use-8b0ae74337c38828f34f74e6e7a8eef10090e122ab782d33db0efbec84f3d6d4.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs-a128eea38b363badd3291275b8dc8ea20e5b7c856d80cac0963963c707cfb8f8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--line-numbers--prism-line-numbers-54b2ea6b93174a6f0e395259e7b81677dae2b690dd8a8e78bb57c9516bb26848.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--toolbar--prism-toolbar-bd96e12a89c91c3335c90863ad85bc704d5d766382989dfda21b005528d9b0ec.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--show-language--prism-show-language-1ae70e19b14d2c31d91de6af2ff7d781c632da5d2be20592e6bdf462732fb860.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/prismjs--plugins--autoloader--prism-autoloader.min.js-1dd99a8498777499aa00ecb35a7182bea97eb7be9cd88d25516a42cd664fd683.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-groovy-1dd3f9f9a506f7792486a654e1ef8fe0c9cebb8873319115c8894f849df10c51.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-yaml-4bed01bc2550f473059ac61ef9dc763b70d9e10f02f6f426c282ed8bf2f87792.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-git-87e2efad35f6d7ad28760acad7789c90f414e092a8f207cf49dccf11a5611485.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-mongodb-cd2e52bd7b15134245a2b4e651c8d0e42ef54ac5e3f327bdfb9d7c778487e2e8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-typescript-85c1e49b8450f67591b3c5e5633d5477a616c024da771133748a75948ceccce8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-jsx-0a66b78816919142cba29f4a9934a99023b6a99bfa3438bbee63c2aff460c8f8.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-tsx-189c9ef290c4aacf9829f57a666b42348751e64562e222539943b4185d590e06.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-regex-a1381f9a8566c896a203171411fd8cdbce2e0e4d27da9775d981d508761ffd51.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-scss-5564901b359c232b7614f1d1da652c3c9c92c7861726bc08cab90306f5e6e12a.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-matlab-28d2ccc02e9ce9038f0607c49e9e44789d2f3f74c816284e17493d38bc27407b.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-r-69c917f1e6ad93680312b2441467654796936e5387cd3ff4dfe5031a1702cb40.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-rust-0c0a0396de8818e245682e75f174693c2347212f9b3b5b191e50aa38e86e3185.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-solidity-92bdd3cde9dfe3dc288fed3a5895c748a4ad88b70f770ea036aa87e1ac27685d.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-sql-5506064463b8c66c086660f6062b739c6c1ad64d1629abab24b6d2bcf9defb34.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-wasm-fcc38bccc8c72cbba6835c25d9ceba2a9363376a3ba62efc482ef630a7a48b1a.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-docker-e37b50495a42874dc207d61f32b507df6d8428a5315b8d0b1a8e478da12f1fb2.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-graphql-eb4abd5293cd97a7151c8bda2112e45f6a84d5056f6234a4a76e2e1075e846db.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-makefile-d059d6fddcc9ec428538918cb8e670ab9bef8a6aae16763f510a551ca61bc872.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-markdown-87065b622100365afe2b8d9b04727f324d65e74f39d9df8c24125b8d7ecb604f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-json-b353eafcd973025043f7e7d226b44a42fe675aac8e51c263b98261228f1ae051.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-python-3e6a58bf00207cf83ce97a652f2deff4cbbfe75409184210a1d244aae0d319dc.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-protobuf-80f7eb35bc3f250f03be6e853980ba6a9a82f4f0141ce9bbaa8b728faad8796d.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/languages/prismjs--components--prism-python-3e6a58bf00207cf83ce97a652f2deff4cbbfe75409184210a1d244aae0d319dc.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stackup_bridge/current_location-744f2ed2e240424bf914465ff3fe735ddfd0a9ee2d0a3f64a39073d878626bfa.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stackup_bridge/provisioning_redirect-7b3fcb57e3e6bc16826db1a5a0806667b66142550ee8478e3ccbc184d4936f55.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/stackup_bridge/stackup_bridge_utils-91ca7208f3a598c9cbbb996d4d675990d6992f2f5bce5c44b38396d0ff943aa2.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/anchor_to_scroll_controller-f1724c0b5a7020cca03b37a02ab50a85e7ba2d5fc7cc4f552ed1143bdd122cf7.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/application-97f13946d3892b4b51e252cdb87dbd96af7484a464b8e58f07679045cf663af2.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/auto_perform_controller-4caff5b39b0470dcdbf675abc70c27e7dcda2252eca9a4bdfa2a068015dc526c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/back_to_top_controller-ea95a34ae346d4ec3f1281c7e855ed56f0bef47a040f7fefa7bd7a1726661c77.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/character_counter_controller-6292a9b369a23f3d8bff296a3d0d619dd3e8a0e1c725aaa607b69b00873b66c1.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/countdown_second_controller-c3a43bf6d82edba62106e4dfe3357f0177e812e638b2022cbfd4e3a03ade9cd1.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/countdown_timer_controller-650f1797ff92df19e5ab31b41ccafd8c36a76313c44d0cc8e1d0bd696e6c24d9.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/country_select_controller-d0245fd5a6215a5afea1185447215316de97ea14537d33329d1eb934ae1d1f00.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/detect_input_change_controller-e61bcd89c71562fae65dacda8a37fe57370134f96d0077c51ee90b2cb07c6b6f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/direct_upload_input_controller-9d019a7330514d30bc56b616fa364c55d18936af03fdd84bc6e62e6766b9c2be.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/dirty_form_controller-4d89f1ca08b2f0f8a347699575b4eebdc8636ee64229046a3f620cf197e33012.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/drawer_transition_controller-d4fde7d5d3e48737b8f514325b51161b217bf2ce981f1266e2e02a4deb4e545e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/editable_field_controller-0da78ff712f6bb3ef69f6d37f661125171ae3e060205b14cf7c46d02986ca305.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/editor_controller-a03faf32f1379360840ae169d5790d8490f09c068ce84a6eae28c54cf323d18c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/expand_all_controller-39a5b6e44134ab75c97517175b39d100a8223f34b6e9745e379057e5e54349ae.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/flash_dispatch_controller-47dd6f8d022cdd139f8233e7ee8b0df5269649db105b75f4041312b98f21b679.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/form_submission_controller-e333bcf213eecdead8fb9c23e4a82705c8d39385af0f0d7f3da2601a78648576.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/frame_missing_controller-64b4bced332b2b34753fc9f99d39b642cdde9faddbc127f9ebbbcdc8acc15511.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/get_restrictions_follow_country_select_controller-464769aa97ec561a55899f1fa36adfd9aabeb1e615fa13faf051e2afea1f3f15.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/highlight_item_controller-19d1b7901e22140217a9b361f0db20e6af7ff7048cef63e6f5db989da1c68135.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/image_input_preview_controller-f16448faa12d1f96b00de885dde766557fd76896b85f78571e3e66efca0fcd6e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/in_place_editable_controller-28aff9027f32fd5972185f73f007b4f1cd69484c5e1859e9bf45e7a1b31c4c1c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/index-6ca991861f21ae0578905e2740e8c80db8c35c9d2d9d08a9e9d86c10217c9854.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/inline_flash_controller-7a9a9be0865bbec157b8237d390b2f88a6e833201edc3b4542e9aff0fb2f90b0.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/input_controller-88539e1f2825a309d2ef7ad680ce85b303d0b0712461bbb59a365bc82ce03bd3.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/input_sync_controller-a69026063c6cb4faabe0936fce1de1893aa42a9bb876a5869c8ca3bd9ba4e84e.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/link_select_controller-9305cf3118d5c181477bb21999d9b5464a61a075a371ec48a2a9a9da44110cec.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/merge_controller-91359a0fab6b0656f2da79d729e17d23bc183993e7c59b1bd1b110222cb055bd.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/organisation_select_controller-0a1c0d08c94f2dbdd544f5d84c313ba21857226ef4676c8ef85f08d216a28690.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/password_toggle_controller-e7b9e26cf68e5f179a366fd9cd3f63e70081490ce1386803c616ffe05a523fe0.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/popover_controller-14dfceb5f3ee0095b50d23923212362d070e2cd155a34380db6eba747a2c96c4.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/progress_bar_controller-bdcad68fdf0a6a8fde3accda3a3660e1da0e6a724e6b4d45d11c935e9f59d5be.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/request_controller-cbfd900571b5524822ac5f5c186fb63d13a5286472836be04ce08dee3546308f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/required_input_form_controller-0289634be02e6f1a151c82b6bcd8319647ec0e4db6102b8c92935ae306d50adf.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_code_flask_parser-7aea525853aaf7b8d0cd1ac91de390169e75212b2b2590be3c49f2e932d65850.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_embed_parser-20c119836abc1c35f04559522bfb5dba26843756e8a03129d51f33eb0776d271.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_image_parser-84d33dc7543ef3aaaeae27c4d4a0af583a3e7883638a2e2ceb121bcc84a985b2.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_list_parser-e59917c6ccd6310ec24e935c4fdf762e5a98a6440655d7fece2476e4f1d78839.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_raw_html_parser-25fcb4579fb5d8fa5d0a223de50277e84e475d2cf0325ceb746149d99c92f430.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich-text-parser/custom_simple_list_parser-6ff62d181384a25fe7a0141744c76a2fd3a311cc454514f7ab8985e5f2357158.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/rich_text_controller-4e82e3de6b9c2581ff18079e9b65a7bdbfe31240c163affec2eebe0f57f0745c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/router_controller-a3580fc5841fae7efb32243cc8e7fab8356b53f65906615f44043882a9349d1c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/scroll_spy_controller-8a87ab19b102dad2f762dcd2e836744391cdcde78e93abb35dcad46afdd7c48a.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/search_list_controller-59c9e27249c11797b764006f7fc16a1a5fc444dc295c09ffe4eb5185166ce98c.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/search_to_focus_controller-802610b0209093a11fabee976f04f1e00af552d803810663c208733945c6a727.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/selection_controller-5550d5395a427968e767594f4f6ffcd0825686b9ed9fa346b221e1de605b215b.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/sidebar_controller-12133fe1d3519176565f6bacec0079d75cd76cbfaaa98ddca0cc4bab073a996d.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/slug_controller-21df1c633a9e5feda8260f48fba217efcd68fad50ac6ab802fb0eddde4c5409f.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/social_icon_list_controller-10ff6b8ef3b75d22703633d6d97c161aa3a0527a294f4d210b9569bddbc596e1.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/sortable_controller-7a739a3b182d9ef0dfeff9ea91715c450641de4c8f1a492f229dd99731a863d7.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/timezone_controller-b13fc654adda20af6b4fd4b26cd216e50df85f6ffe636e1d80053c83cc0e4d0a.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/tooltip_controller-b517848f070b0b9ded871d3909fa7f21848c964ae5d8f6271c4b064c382612d6.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/turbo_frame_flash_controller-03d1853c33f612779735d2bddbfe8ee4c74fcc2d907b6594dadabc405e2208ce.js">
+<link rel="modulepreload" href="https://rnd-devops-app-infra-prod-static-assets.sgp1.digitaloceanspaces.com/tribex/learn-and-earn-web:0.1-929e619b6dcb78e2596700d9ce91ca5ec373579e/assets/controllers/turbo_frame_modal_controller-dec5dc9f8437cdad2101ac683919f7e96d98fe9e933937ee55c769465d169076.js">
+<script type="module">import "application"</script>
+    <script>
+  (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:5056943,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script><script async="" src="./Learn_files/hotjar-5056943.js.download"></script>
+
+    <link rel="icon" type="image/svg+xml" sizes="any" href="./Learn_files/learn-logomark-color-5457110daf3df46b2e34f7b908670d3137534ff4be8f4bc198158ad006cdad8c.svg">
+    <link rel="apple-touch-icon" type="image/svg+xml" sizes="180x180" href="./Learn_files/learn-logomark-color-5457110daf3df46b2e34f7b908670d3137534ff4be8f4bc198158ad006cdad8c.svg">
+
+
+  <style type="text/css">.cdx-notify--error{background:#fffbfb!important}.cdx-notify--error::before{background:#fb5d5d!important}.cdx-notify__input{max-width:130px;padding:5px 10px;background:#f7f7f7;border:0;border-radius:3px;font-size:13px;color:#656b7c;outline:0}.cdx-notify__input:-ms-input-placeholder{color:#656b7c}.cdx-notify__input::placeholder{color:#656b7c}.cdx-notify__input:focus:-ms-input-placeholder{color:rgba(101,107,124,.3)}.cdx-notify__input:focus::placeholder{color:rgba(101,107,124,.3)}.cdx-notify__button{border:none;border-radius:3px;font-size:13px;padding:5px 10px;cursor:pointer}.cdx-notify__button:last-child{margin-left:10px}.cdx-notify__button--cancel{background:#f2f5f7;box-shadow:0 2px 1px 0 rgba(16,19,29,0);color:#656b7c}.cdx-notify__button--cancel:hover{background:#eee}.cdx-notify__button--confirm{background:#34c992;box-shadow:0 1px 1px 0 rgba(18,49,35,.05);color:#fff}.cdx-notify__button--confirm:hover{background:#33b082}.cdx-notify__btns-wrapper{display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap;margin-top:5px}.cdx-notify__cross{position:absolute;top:5px;right:5px;width:10px;height:10px;padding:5px;opacity:.54;cursor:pointer}.cdx-notify__cross::after,.cdx-notify__cross::before{content:'';position:absolute;left:9px;top:5px;height:12px;width:2px;background:#575d67}.cdx-notify__cross::before{transform:rotate(-45deg)}.cdx-notify__cross::after{transform:rotate(45deg)}.cdx-notify__cross:hover{opacity:1}.cdx-notifies{position:fixed;z-index:2;bottom:20px;left:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif}.cdx-notify{position:relative;width:220px;margin-top:15px;padding:13px 16px;background:#fff;box-shadow:0 11px 17px 0 rgba(23,32,61,.13);border-radius:5px;font-size:14px;line-height:1.4em;word-wrap:break-word}.cdx-notify::before{content:'';position:absolute;display:block;top:0;left:0;width:3px;height:calc(100% - 6px);margin:3px;border-radius:5px;background:0 0}@keyframes bounceIn{0%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1.05)}70%{transform:scale(.9)}100%{transform:scale(1)}}.cdx-notify--bounce-in{animation-name:bounceIn;animation-duration:.6s;animation-iteration-count:1}.cdx-notify--success{background:#fafffe!important}.cdx-notify--success::before{background:#41ffb1!important}</style><style>.ce-paragraph {
+    line-height: 1.6em;
+    outline: none;
+}
+
+.ce-paragraph[data-placeholder]:empty::before{
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  opacity: 0;
+}
+
+/** Show placeholder at the first paragraph if Editor is empty */
+.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty::before {
+  opacity: 1;
+}
+
+.codex-editor--toolbox-opened .ce-block:first-child .ce-paragraph[data-placeholder]:empty::before,
+.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty:focus::before {
+  opacity: 0;
+}
+
+.ce-paragraph p:first-of-type{
+    margin-top: 0;
+}
+
+.ce-paragraph p:last-of-type{
+    margin-bottom: 0;
+}
+</style><style type="text/css">/**
+ * Plugin styles
+ */
+.ce-header {
+  padding: 0.6em 0 3px;
+  margin: 0;
+  line-height: 1.25em;
+  outline: none;
+}
+
+.ce-header p,
+.ce-header div{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/**
+ * Styles for Plugin icon in Toolbar
+ */
+.ce-header__icon {}
+
+.ce-header[contentEditable=true][data-placeholder]::before{
+  position: absolute;
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  display: none;
+  cursor: text;
+}
+
+.ce-header[contentEditable=true][data-placeholder]:empty::before {
+  display: block;
+}
+
+.ce-header[contentEditable=true][data-placeholder]:empty:focus::before {
+  display: none;
+}
+</style><style>.embed-tool--loading .embed-tool__caption {
+      display: none;
+    }
+
+    .embed-tool--loading .embed-tool__preloader {
+      display: block;
+    }
+
+    .embed-tool--loading .embed-tool__content {
+      display: none;
+    }
+  .embed-tool__preloader {
+    display: none;
+    position: relative;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e6e9eb;
+  }
+  .embed-tool__preloader::before {
+      content: '';
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      margin-top: -25px;
+      margin-left: -15px;
+      border-radius: 50%;
+      border: 2px solid #cdd1e0;
+      border-top-color: #388ae5;
+      box-sizing: border-box;
+      animation: embed-preloader-spin 2s infinite linear;
+    }
+  .embed-tool__url {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    color: #7b7e89;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .embed-tool__content {
+    width: 100%;
+  }
+  .embed-tool__caption {
+    margin-top: 7px;
+  }
+  .embed-tool__caption[contentEditable=true][data-placeholder]::before{
+      position: absolute;
+      content: attr(data-placeholder);
+      color: #707684;
+      font-weight: normal;
+      opacity: 0;
+    }
+  .embed-tool__caption[contentEditable=true][data-placeholder]:empty::before {
+         opacity: 1;
+      }
+  .embed-tool__caption[contentEditable=true][data-placeholder]:empty:focus::before {
+        opacity: 0;
+      }
+
+@keyframes embed-preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style><style type="text/css">.cdx-quote-icon svg {
+  transform: rotate(180deg);
+}
+
+.cdx-quote {
+  margin: 0;
+}
+
+.cdx-quote__text {
+  min-height: 158px;
+  margin-bottom: 10px;
+}
+
+.cdx-quote__caption {}
+
+.cdx-quote [contentEditable=true][data-placeholder]::before{
+  position: absolute;
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  opacity: 0;
+}
+
+.cdx-quote [contentEditable=true][data-placeholder]:empty::before {
+  opacity: 1;
+}
+
+.cdx-quote [contentEditable=true][data-placeholder]:empty:focus::before {
+  opacity: 0;
+}
+
+
+.cdx-quote-settings {
+  display: flex;
+}
+
+.cdx-quote-settings .cdx-settings-button {
+  width: 50%;
+}
+</style><style type="text/css">.cdx-marker {
+  background: rgba(245,235,111,0.29);
+  padding: 3px 0;
+}</style><style>.cdx-underline {
+    text-decoration: underline;
+}
+</style><style type="text/css">.inline-code {
+  background: rgba(250, 239, 240, 0.78);
+  color: #b44437;
+  padding: 3px 4px;
+  border-radius: 5px;
+  margin: 0 1px;
+  font-family: inherit;
+  font-size: 0.86em;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+</style><style>.cdx-list {
+    margin: 0;
+    padding-left: 40px;
+    outline: none;
+}
+
+    .cdx-list__item {
+        padding: 5.5px 0 5.5px 3px;
+        line-height: 1.6em;
+    }
+
+    .cdx-list--unordered {
+        list-style: disc;
+    }
+
+    .cdx-list--ordered {
+        list-style: decimal;
+    }
+
+    .cdx-list-settings {
+        display: flex;
+    }
+
+    .cdx-list-settings .cdx-settings-button {
+            width: 50%;
+        }
+</style><style>.cdx-nested-list {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  counter-reset: item;
+  list-style: none;
+}
+
+  .cdx-nested-list__item {
+    line-height: 1.6em;
+    display: flex;
+    margin: 2px 0;
+  }
+
+  .cdx-nested-list__item [contenteditable]{
+      outline: none;
+    }
+
+  .cdx-nested-list__item-body {
+      flex-grow: 2;
+    }
+
+  .cdx-nested-list__item-content,
+    .cdx-nested-list__item-children {
+      flex-basis: 100%;
+    }
+
+  .cdx-nested-list__item-content {
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+  .cdx-nested-list__item-children {}
+
+  .cdx-nested-list__item::before {
+      counter-increment: item;
+      margin-right: 5px;
+      white-space: nowrap;
+    }
+
+  .cdx-nested-list--ordered > .cdx-nested-list__item::before {
+    content: counters(item, ".") ". ";
+  }
+
+  .cdx-nested-list--unordered > .cdx-nested-list__item::before {
+    content: "•";
+  }
+
+  .cdx-nested-list__settings {
+    display: flex;
+  }
+
+  .cdx-nested-list__settings .cdx-settings-button {
+      width: 50%;
+    }
+</style><style>.image-tool {
+  --bg-color: #cdd1e0;
+  --front-color: #388ae5;
+  --border-color: #e8e8eb;
+
+}
+
+  .image-tool__image {
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .image-tool__image-picture {
+      max-width: 100%;
+      vertical-align: bottom;
+      display: block;
+    }
+
+  .image-tool__image-preloader {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-size: cover;
+      margin: auto;
+      position: relative;
+      background-color: var(--bg-color);
+      background-position: center center;
+    }
+
+  .image-tool__image-preloader::after {
+        content: "";
+        position: absolute;
+        z-index: 3;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--bg-color);
+        border-top-color: var(--front-color);
+        left: 50%;
+        top: 50%;
+        margin-top: -30px;
+        margin-left: -30px;
+        animation: image-preloader-spin 2s infinite linear;
+        box-sizing: border-box;
+      }
+
+  .image-tool__caption[contentEditable="true"][data-placeholder]::before {
+      position: absolute !important;
+      content: attr(data-placeholder);
+      color: #707684;
+      font-weight: normal;
+      display: none;
+    }
+
+  .image-tool__caption[contentEditable="true"][data-placeholder]:empty::before {
+        display: block;
+      }
+
+  .image-tool__caption[contentEditable="true"][data-placeholder]:empty:focus::before {
+        display: none;
+      }
+
+  .image-tool--empty .image-tool__image {
+      display: none;
+    }
+
+  .image-tool--empty .image-tool__caption, .image-tool--loading .image-tool__caption {
+      display: none;
+    }
+
+  .image-tool .cdx-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-tool .cdx-button svg {
+      height: auto;
+      margin: 0 6px 0 0;
+    }
+
+  .image-tool--filled .cdx-button {
+      display: none;
+    }
+
+  .image-tool--filled .image-tool__image-preloader {
+        display: none;
+      }
+
+  .image-tool--loading .image-tool__image {
+      min-height: 200px;
+      display: flex;
+      border: 1px solid var(--border-color);
+      background-color: #fff;
+    }
+
+  .image-tool--loading .image-tool__image-picture {
+        display: none;
+      }
+
+  .image-tool--loading .cdx-button {
+      display: none;
+    }
+
+  /**
+   * Tunes
+   * ----------------
+   */
+
+  .image-tool--withBorder .image-tool__image {
+      border: 1px solid var(--border-color);
+    }
+
+  .image-tool--withBackground .image-tool__image {
+      padding: 15px;
+      background: var(--bg-color);
+    }
+
+  .image-tool--withBackground .image-tool__image-picture {
+        max-width: 60%;
+        margin: 0 auto;
+      }
+
+  .image-tool--stretched .image-tool__image-picture {
+        width: 100%;
+      }
+
+@keyframes image-preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style><style type="text/css">.cdx-simple-image {}
+
+.cdx-simple-image .cdx-loader {
+  min-height: 200px;
+}
+
+.cdx-simple-image .cdx-input {
+  margin-top: 10px;
+}
+
+.cdx-simple-image img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty::before {
+  position: absolute;
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  opacity: 0;
+ }
+
+.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty::before {
+  opacity: 1;
+}
+
+.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty:focus::before {
+  opacity: 0;
+}
+
+
+.cdx-simple-image__picture--with-background {
+  background: #eff2f5;
+  padding: 10px;
+}
+
+.cdx-simple-image__picture--with-background img {
+  display: block;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.cdx-simple-image__picture--with-border {
+  border: 1px solid #e8e8eb;
+  padding: 1px;
+}
+
+.cdx-simple-image__picture--stretched img {
+  max-width: none;
+  width: 100%;
+}
+</style><style type="text/css">.ce-rawtool__textarea {
+  min-height: 200px;
+  resize: vertical;
+  border-radius: 8px;
+  border: 0;
+  background-color: #1e2128;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+  color: #a1a7b6;
+  overscroll-behavior: contain;
+}
+</style><style>.picker_wrapper.popup {
+  z-index: 99;
+  width: 170px;
+  margin: 0;
+  box-shadow: 0 0 10px 1px #eaeaea;
+  background: #ffffff;
+}
+
+.picker_arrow {
+  display: none;
+}
+
+.layout_default .picker_slider, .layout_default .picker_selector {
+  padding: 5px;
+}
+
+.colorPlugin.ce-inline-tool {
+  width: 32px;
+  border-radius: 3px;
+}
+
+.colorPlugin.ce-inline-tool--active svg {
+  fill: #3c99ff;
+}
+
+#color-left-btn {
+  height: 35px;
+  width: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+#color-left-btn:hover {
+  border-radius: 5px 0 0 5px;
+  background: rgba(203, 203, 203, 0.49);
+}
+
+#color-text {
+  padding: 0 4px;
+}
+
+#color-btn-text {
+  height: 15px;
+}
+
+</style><style>.editorjs-codeFlask_Wrapper {
+    height: 200px;
+	border: 1px solid #dcdfe6;
+	border-radius: 5px;
+	background-color: #f0f2f5;
+    margin-bottom: 10px;
+}
+
+.editorjs-codeFlask_Wrapper .codeflask {
+	border-radius: 5px;
+	background: none;
+}
+
+
+.editorjs-codeFlask_Wrapper .editorjs-codeFlask_LangDisplay {
+	position: absolute;
+	height: 20px;
+	line-height: 20px;
+	font-size: 10px;
+	color: #999;
+	background-color: #dcdfe6;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	right: 0;
+	bottom: 0;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.editorjs-codeFlask_Wrapper .codeflask.codeflask--has-line-numbers:before{
+    background-color: #dcdfe6;
+}</style><style>.nice-select{-webkit-tap-highlight-color:rgba(0,0,0,0);background-color:#fff;border-radius:5px;border:solid 1px #e8e8e8;box-sizing:border-box;clear:both;cursor:pointer;display:block;float:left;font-family:inherit;font-size:14px;font-weight:normal;height:38px;line-height:36px;outline:none;padding-left:18px;padding-right:30px;position:relative;text-align:left !important;transition:all .2s ease-in-out;user-select:none;white-space:nowrap;width:auto}.nice-select:hover{border-color:#dbdbdb}.nice-select:active,.nice-select.open,.nice-select:focus{border-color:#999}.nice-select:after{border-bottom:2px solid #999;border-right:2px solid #999;content:"";display:block;height:5px;margin-top:-4px;pointer-events:none;position:absolute;right:12px;top:50%;transform-origin:66% 66%;transform:rotate(45deg);transition:all .15s ease-in-out;width:5px}.nice-select.open:after{transform:rotate(-135deg)}.nice-select.open .nice-select-dropdown{opacity:1;pointer-events:auto;transform:scale(1) translateY(0)}.nice-select.disabled{border-color:#ededed;color:#999;pointer-events:none}.nice-select.disabled:after{border-color:#ccc}.nice-select.wide{width:100%}.nice-select.wide .nice-select-dropdown{left:0 !important;right:0 !important}.nice-select.right{float:right}.nice-select.right .nice-select-dropdown{left:auto;right:0}.nice-select.small{font-size:12px;height:36px;line-height:34px}.nice-select.small:after{height:4px;width:4px}.nice-select.small .option{line-height:34px;min-height:34px}.nice-select .nice-select-dropdown{margin-top:4px;background-color:#fff;border-radius:5px;box-shadow:0 0 0 1px rgba(68,68,68,.11);pointer-events:none;position:absolute;top:100%;left:0;transform-origin:50% 0;transform:scale(0.75) translateY(19px);transition:all .2s cubic-bezier(0.5, 0, 0, 1.25),opacity .15s ease-out;z-index:9;opacity:0}.nice-select .list{border-radius:5px;box-sizing:border-box;overflow:hidden;padding:0;max-height:210px;overflow-y:auto}.nice-select .list:hover .option:not(:hover){background-color:transparent !important}.nice-select .option{cursor:pointer;font-weight:400;line-height:40px;list-style:none;outline:none;padding-left:18px;padding-right:29px;text-align:left;transition:all .2s}.nice-select .option:hover,.nice-select .option.focus,.nice-select .option.selected.focus{background-color:#f6f6f6}.nice-select .option.selected{font-weight:bold}.nice-select .option.disabled{background-color:transparent;color:#999;cursor:default}.nice-select .optgroup{font-weight:bold}.no-csspointerevents .nice-select .nice-select-dropdown{display:none}.no-csspointerevents .nice-select.open .nice-select-dropdown{display:block}.nice-select .list::-webkit-scrollbar{width:0}.nice-select .has-multiple{white-space:inherit;height:auto;padding:7px 12px;min-height:36px;line-height:22px}.nice-select .has-multiple span.current{border:1px solid #ccc;background:#eee;padding:0 10px;border-radius:3px;display:inline-block;line-height:24px;font-size:14px;margin-bottom:3px;margin-right:3px}.nice-select .has-multiple .multiple-options{display:block;line-height:24px;padding:0}.nice-select .nice-select-search-box{box-sizing:border-box;width:100%;padding:5px;pointer-events:none;border-radius:5px 5px 0 0}.nice-select .nice-select-search{box-sizing:border-box;background-color:#fff;border:1px solid #e8e8e8;border-radius:3px;color:#444;display:inline-block;vertical-align:middle;padding:7px 12px;margin:0 10px 0 0;width:100%;min-height:36px;line-height:22px;height:auto;outline:0 !important;font-size:14px}
+</style><meta name="csrf-token" content="eo_4QmV940lxzeaTKfgWJxPdYCBiAybxHu-Y72158ZtG08WKbAGtKqo3Iq1EsuJY_9a78JDSk6dsf09WmGhnSA"><style>.nice-select{-webkit-tap-highlight-color:rgba(0,0,0,0);background-color:#fff;border-radius:5px;border:solid 1px #e8e8e8;box-sizing:border-box;clear:both;cursor:pointer;display:block;float:left;font-family:inherit;font-size:14px;font-weight:normal;height:38px;line-height:36px;outline:none;padding-left:18px;padding-right:30px;position:relative;text-align:left !important;transition:all .2s ease-in-out;user-select:none;white-space:nowrap;width:auto}.nice-select:hover{border-color:#dbdbdb}.nice-select:active,.nice-select.open,.nice-select:focus{border-color:#999}.nice-select:after{border-bottom:2px solid #999;border-right:2px solid #999;content:"";display:block;height:5px;margin-top:-4px;pointer-events:none;position:absolute;right:12px;top:50%;transform-origin:66% 66%;transform:rotate(45deg);transition:all .15s ease-in-out;width:5px}.nice-select.open:after{transform:rotate(-135deg)}.nice-select.open .nice-select-dropdown{opacity:1;pointer-events:auto;transform:scale(1) translateY(0)}.nice-select.disabled{border-color:#ededed;color:#999;pointer-events:none}.nice-select.disabled:after{border-color:#ccc}.nice-select.wide{width:100%}.nice-select.wide .nice-select-dropdown{left:0 !important;right:0 !important}.nice-select.right{float:right}.nice-select.right .nice-select-dropdown{left:auto;right:0}.nice-select.small{font-size:12px;height:36px;line-height:34px}.nice-select.small:after{height:4px;width:4px}.nice-select.small .option{line-height:34px;min-height:34px}.nice-select .nice-select-dropdown{margin-top:4px;background-color:#fff;border-radius:5px;box-shadow:0 0 0 1px rgba(68,68,68,.11);pointer-events:none;position:absolute;top:100%;left:0;transform-origin:50% 0;transform:scale(0.75) translateY(19px);transition:all .2s cubic-bezier(0.5, 0, 0, 1.25),opacity .15s ease-out;z-index:9;opacity:0}.nice-select .list{border-radius:5px;box-sizing:border-box;overflow:hidden;padding:0;max-height:210px;overflow-y:auto}.nice-select .list:hover .option:not(:hover){background-color:transparent !important}.nice-select .option{cursor:pointer;font-weight:400;line-height:40px;list-style:none;outline:none;padding-left:18px;padding-right:29px;text-align:left;transition:all .2s}.nice-select .option:hover,.nice-select .option.focus,.nice-select .option.selected.focus{background-color:#f6f6f6}.nice-select .option.selected{font-weight:bold}.nice-select .option.disabled{background-color:transparent;color:#999;cursor:default}.nice-select .optgroup{font-weight:bold}.no-csspointerevents .nice-select .nice-select-dropdown{display:none}.no-csspointerevents .nice-select.open .nice-select-dropdown{display:block}.nice-select .list::-webkit-scrollbar{width:0}.nice-select .has-multiple{white-space:inherit;height:auto;padding:7px 12px;min-height:36px;line-height:22px}.nice-select .has-multiple span.current{border:1px solid #ccc;background:#eee;padding:0 10px;border-radius:3px;display:inline-block;line-height:24px;font-size:14px;margin-bottom:3px;margin-right:3px}.nice-select .has-multiple .multiple-options{display:block;line-height:24px;padding:0}.nice-select .nice-select-search-box{box-sizing:border-box;width:100%;padding:5px;pointer-events:none;border-radius:5px 5px 0 0}.nice-select .nice-select-search{box-sizing:border-box;background-color:#fff;border:1px solid #e8e8e8;border-radius:3px;color:#444;display:inline-block;vertical-align:middle;padding:7px 12px;margin:0 10px 0 0;width:100%;min-height:36px;line-height:22px;height:auto;outline:0 !important;font-size:14px}
+</style></head>
+  <body data-controller="inline-flash flash-dispatch turbo-frame-flash frame-missing" data-action="flash-dispatch:display-content-&gt;inline-flash#render
+  frame-missing:trigger-&gt;inline-flash#render">
+    <div>
+      <div data-controller="sidebar">
+  <div data-sidebar-target="sidebar" data-turbo="false"><nav class="w-[53px] md:w-screen fixed flex items-center top-0 bg-white p-4 pl-2 md:px-8 z-50 md:hidden"><span class="border-r border-gray-200 pr-2 py-0.5 md:hidden"><button type="button" class="p-2 text-gray-800 md:hidden"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.1 4H5c-.5 0-.9.4-.9.9V9c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9V5c0-.5-.4-.9-.9-.9Zm10 0H15c-.5 0-.9.4-.9.9V9c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9V5c0-.5-.4-.9-.9-.9Zm-10 10H5c-.5 0-.9.4-.9.9V19c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9v-4c0-.5-.4-.9-.9-.9Zm10 0H15c-.5 0-.9.4-.9.9V19c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9v-4c0-.5-.4-.9-.9-.9Z"></path></svg></button></span></nav><nav class="fixed top-0 z-50 h-screen bg-white p-4 border-r border-gray-200 transition-transform md:translate-x-0 -translate-x-full"><div class="h-full w-52 flex flex-col md:w-10"><div class="flex flex-row items-center mb-10 justify-between md:hidden"><div class="flex flex-row items-center"><svg width="104" height="33" viewBox="0 0 104 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8 w-auto"><path d="M29.3168 16.3882L26.1304 17.9676C26.0155 17.8515 25.882 17.755 25.7354 17.682L24.4993 17.0702L16.8859 13.2983C16.679 13.1956 16.4507 13.1421 16.2193 13.1421C15.9878 13.1421 15.7596 13.1956 15.5526 13.2983L10.0927 16.0042L6.36761 14.1722C6.48681 14.2304 6.61806 14.2602 6.75094 14.2593C6.88381 14.2584 7.01464 14.2268 7.13303 14.167L15.5526 9.99451C15.7596 9.89183 15.9878 9.83838 16.2193 9.83838C16.4507 9.83838 16.679 9.89183 16.8859 9.99451L26.5573 14.7874L26.8694 14.9421L28.7284 15.8632C28.9688 15.9822 29.1722 16.1637 29.3168 16.3882V16.3882Z" fill="#FF6A6A"></path><path d="M26.0576 24.0895L22.3611 25.9227L20.0466 24.7752L16.8862 23.209C16.6792 23.1063 16.451 23.0528 16.2195 23.0528C15.9881 23.0528 15.7598 23.1063 15.5529 23.209L8.11921 26.8925L6.21011 27.8386L3.02277 26.2511C3.10663 26.1208 3.22466 26.0155 3.36424 25.9464L5.17828 25.0473L5.88147 24.6988L15.5529 19.9057C15.7598 19.803 15.9881 19.7495 16.2195 19.7495C16.451 19.7495 16.6792 19.803 16.8862 19.9057L22.333 22.605L25.307 24.0782C25.423 24.1366 25.5509 24.168 25.681 24.1699C25.8111 24.1719 25.9399 24.1444 26.0576 24.0895Z" fill="#FF6A6A"></path><path d="M29.4165 9.73147L26.2198 11.3158L16.8867 6.69054C16.6797 6.58786 16.4514 6.5344 16.22 6.5344C15.9886 6.5344 15.7603 6.58786 15.5534 6.69054L8.2335 10.3181L6.35971 11.2468C6.31571 11.2686 6.27367 11.294 6.23403 11.3229L3.12299 9.78115C3.2676 9.55665 3.47095 9.37523 3.71137 9.25622L5.16319 8.53575L5.88194 8.17968L15.5534 3.38677C15.7603 3.28409 15.9886 3.23063 16.22 3.23063C16.4514 3.23063 16.6797 3.28409 16.8867 3.38677L26.5581 8.17968L27.0563 8.42661L29.0753 9.42728C29.2148 9.49612 29.3327 9.60127 29.4165 9.73147Z" fill="#FF6A6A"></path><path d="M10.0929 16.004L7.03472 17.5196L5.88166 18.091L5.0439 18.507C4.05281 18.9975 2.88666 18.2831 2.88666 17.1848V10.5773C2.88657 10.2949 2.96824 10.0184 3.12196 9.7807V9.7807L6.23301 11.3225C6.12387 11.4022 6.03519 11.5063 5.97415 11.6263C5.91312 11.7463 5.88143 11.8789 5.88166 12.0133V13.4019C5.88106 13.5627 5.92642 13.7204 6.01251 13.8567C6.09859 13.993 6.22187 14.1023 6.36807 14.172L10.0929 16.004Z" fill="#FF6A6A"></path><path d="M6.21029 27.8393L4.13626 28.8672C4.00452 28.9322 3.85819 28.9629 3.71115 28.9562C3.56412 28.9495 3.42124 28.9057 3.29608 28.8289C3.17091 28.7521 3.06761 28.6449 2.99596 28.5175C2.92431 28.3901 2.88668 28.2466 2.88666 28.1007V26.7124C2.8866 26.5489 2.9339 26.3888 3.02295 26.2511L6.21029 27.8393Z" fill="#FF6A6A"></path><path d="M29.5534 10.1932V11.5818C29.5533 11.7278 29.5157 11.8713 29.4439 11.9988C29.3722 12.1263 29.2688 12.2335 29.1435 12.3103C29.0182 12.387 28.8752 12.4307 28.728 12.4373C28.5809 12.4439 28.4345 12.4131 28.3028 12.3478L26.5584 11.4834L26.2201 11.3158L29.4168 9.73144C29.506 9.86922 29.5534 10.0295 29.5534 10.1932V10.1932Z" fill="#FF6A6A"></path><path d="M29.5529 17.1843V27.0956C29.5529 28.1939 28.3867 28.9083 27.3956 28.4171L26.5579 28.0011L22.3604 25.9209L26.0569 24.0877L26.0594 24.0865C26.2085 24.0179 26.3346 23.9084 26.4228 23.771C26.511 23.6335 26.5575 23.4738 26.5569 23.3109V19.0038C26.5569 18.6162 26.4032 18.2442 26.129 17.9679V17.9679L29.3153 16.3884C29.4697 16.6257 29.5521 16.9019 29.5529 17.1843V17.1843Z" fill="#FF6A6A"></path><path d="M43.5438 14.2742C43.4984 13.8159 43.3033 13.4598 42.9586 13.206C42.6139 12.9522 42.1461 12.8253 41.5552 12.8253C41.1537 12.8253 40.8147 12.8821 40.5382 12.9958C40.2616 13.1056 40.0495 13.259 39.9018 13.456C39.7578 13.653 39.6859 13.8765 39.6859 14.1265C39.6783 14.3348 39.7219 14.5166 39.8166 14.6719C39.915 14.8272 40.0495 14.9617 40.22 15.0753C40.3904 15.1852 40.5874 15.2818 40.8109 15.3651C41.0344 15.4446 41.273 15.5128 41.5268 15.5696L42.5722 15.8196C43.0798 15.9333 43.5457 16.0848 43.97 16.2742C44.3942 16.4636 44.7616 16.6965 45.0722 16.9731C45.3828 17.2496 45.6234 17.5753 45.7938 17.9503C45.9681 18.3253 46.0571 18.7553 46.0609 19.2401C46.0571 19.9522 45.8753 20.5696 45.5154 21.0924C45.1594 21.6113 44.6442 22.0147 43.97 22.3026C43.2995 22.5867 42.4908 22.7287 41.5438 22.7287C40.6044 22.7287 39.7863 22.5848 39.0893 22.2969C38.3961 22.009 37.8544 21.5829 37.4643 21.0185C37.0779 20.4503 36.8753 19.7477 36.8563 18.9106H39.237C39.2635 19.3007 39.3753 19.6265 39.5722 19.8878C39.773 20.1454 40.04 20.3405 40.3734 20.4731C40.7105 20.6018 41.0912 20.6662 41.5154 20.6662C41.9321 20.6662 42.2938 20.6056 42.6007 20.4844C42.9113 20.3632 43.1518 20.1946 43.3222 19.9787C43.4927 19.7628 43.5779 19.5147 43.5779 19.2344C43.5779 18.9731 43.5003 18.7534 43.345 18.5753C43.1935 18.3973 42.97 18.2458 42.6745 18.1208C42.3828 17.9958 42.0249 17.8821 41.6007 17.7799L40.3336 17.4617C39.3525 17.2231 38.5779 16.8499 38.0097 16.3424C37.4416 15.8348 37.1594 15.1511 37.1632 14.2912C37.1594 13.5867 37.3469 12.9712 37.7257 12.4446C38.1082 11.9181 38.6328 11.5071 39.2995 11.2117C39.9662 10.9162 40.7238 10.7685 41.5722 10.7685C42.4359 10.7685 43.1897 10.9162 43.8336 11.2117C44.4813 11.5071 44.9851 11.9181 45.345 12.4446C45.7048 12.9712 45.8904 13.581 45.9018 14.2742H43.5438ZM52.3123 13.8367V15.6549H47.0566V13.8367H52.3123ZM48.2498 11.7458H50.6703V19.8821C50.6703 20.1056 50.7043 20.2799 50.7725 20.4049C50.8407 20.5261 50.9354 20.6113 51.0566 20.6606C51.1816 20.7098 51.3256 20.7344 51.4884 20.7344C51.6021 20.7344 51.7157 20.7249 51.8293 20.706C51.943 20.6833 52.0301 20.6662 52.0907 20.6549L52.4714 22.456C52.3502 22.4939 52.1797 22.5374 51.96 22.5867C51.7403 22.6397 51.4733 22.6719 51.1589 22.6833C50.5756 22.706 50.0642 22.6284 49.6248 22.4503C49.1892 22.2723 48.8502 21.9958 48.6078 21.6208C48.3653 21.2458 48.246 20.7723 48.2498 20.2003V11.7458ZM56.3776 22.7287C55.8208 22.7287 55.3246 22.6321 54.889 22.439C54.4534 22.242 54.1087 21.9522 53.8549 21.5696C53.6049 21.1833 53.4799 20.7022 53.4799 20.1265C53.4799 19.6416 53.5689 19.2344 53.747 18.9049C53.925 18.5753 54.1674 18.3102 54.4742 18.1094C54.7811 17.9087 55.1295 17.7571 55.5197 17.6549C55.9136 17.5526 56.3265 17.4806 56.7583 17.439C57.2659 17.3859 57.675 17.3367 57.9856 17.2912C58.2962 17.242 58.5216 17.17 58.6617 17.0753C58.8019 16.9806 58.872 16.8405 58.872 16.6549V16.6208C58.872 16.2609 58.7583 15.9825 58.5311 15.7856C58.3076 15.5886 57.9894 15.4901 57.5765 15.4901C57.1409 15.4901 56.7943 15.5867 56.5367 15.7799C56.2792 15.9693 56.1087 16.2079 56.0254 16.4958L53.7867 16.314C53.9004 15.7837 54.1239 15.3253 54.4572 14.939C54.7905 14.5488 55.2204 14.2496 55.747 14.0412C56.2773 13.8291 56.8909 13.7231 57.5879 13.7231C58.0727 13.7231 58.5367 13.7799 58.9799 13.8935C59.4269 14.0071 59.8227 14.1833 60.1674 14.4219C60.5159 14.6606 60.7905 14.9674 60.9913 15.3424C61.192 15.7136 61.2924 16.1587 61.2924 16.6776V22.564H58.997V21.3537H58.9288C58.7886 21.6265 58.6011 21.867 58.3663 22.0753C58.1314 22.2799 57.8492 22.4409 57.5197 22.5583C57.1901 22.6719 56.8095 22.7287 56.3776 22.7287ZM57.0708 21.0583C57.4269 21.0583 57.7413 20.9882 58.014 20.8481C58.2867 20.7041 58.5007 20.5109 58.6561 20.2685C58.8114 20.0261 58.889 19.7515 58.889 19.4446V18.5185C58.8132 18.5678 58.7091 18.6132 58.5765 18.6549C58.4477 18.6928 58.3019 18.7287 58.139 18.7628C57.9761 18.7931 57.8132 18.8215 57.6504 18.8481C57.4875 18.8708 57.3398 18.8916 57.2072 18.9106C56.9231 18.9522 56.675 19.0185 56.4629 19.1094C56.2507 19.2003 56.086 19.3234 55.9686 19.4787C55.8511 19.6303 55.7924 19.8196 55.7924 20.0469C55.7924 20.3765 55.9117 20.6284 56.1504 20.8026C56.3928 20.9731 56.6996 21.0583 57.0708 21.0583ZM67.1134 22.7344C66.2195 22.7344 65.4506 22.545 64.8066 22.1662C64.1665 21.7837 63.674 21.2534 63.3293 20.5753C62.9884 19.8973 62.818 19.117 62.818 18.2344C62.818 17.3405 62.9903 16.5564 63.335 15.8821C63.6835 15.2041 64.1778 14.6757 64.818 14.2969C65.4581 13.9143 66.2195 13.7231 67.1021 13.7231C67.8634 13.7231 68.5301 13.8613 69.1021 14.1378C69.674 14.4143 70.1267 14.8026 70.46 15.3026C70.7934 15.8026 70.9771 16.3897 71.0112 17.064H68.7271C68.6627 16.6284 68.4922 16.278 68.2157 16.0128C67.943 15.7439 67.585 15.6094 67.1418 15.6094C66.7668 15.6094 66.4392 15.7117 66.1589 15.9162C65.8824 16.117 65.6665 16.4106 65.5112 16.7969C65.3559 17.1833 65.2782 17.6511 65.2782 18.2003C65.2782 18.7571 65.354 19.2306 65.5055 19.6208C65.6608 20.0109 65.8786 20.3083 66.1589 20.5128C66.4392 20.7174 66.7668 20.8196 67.1418 20.8196C67.4184 20.8196 67.6665 20.7628 67.8862 20.6492C68.1096 20.5356 68.2934 20.3708 68.4373 20.1549C68.585 19.9352 68.6816 19.6719 68.7271 19.3651H71.0112C70.9733 20.0318 70.7915 20.6189 70.4657 21.1265C70.1437 21.6303 69.6987 22.0242 69.1305 22.3083C68.5623 22.5924 67.89 22.7344 67.1134 22.7344ZM74.7541 20.0526L74.7597 17.1492H75.112L77.9075 13.8367H80.6859L76.9302 18.2231H76.3563L74.7541 20.0526ZM72.5609 22.564V10.9276H74.9813V22.564H72.5609ZM78.0154 22.564L75.4472 18.7628L77.0609 17.0526L80.8507 22.564H78.0154ZM89.1063 10.9276H91.5666V18.4844C91.5666 19.3329 91.3639 20.0753 90.9586 20.7117C90.5571 21.3481 89.9946 21.8443 89.2711 22.2003C88.5476 22.5526 87.7048 22.7287 86.7427 22.7287C85.7768 22.7287 84.9321 22.5526 84.2086 22.2003C83.4851 21.8443 82.9226 21.3481 82.5211 20.7117C82.1196 20.0753 81.9188 19.3329 81.9188 18.4844V10.9276H84.3791V18.2742C84.3791 18.7174 84.4757 19.1113 84.6688 19.456C84.8658 19.8007 85.1423 20.0715 85.4984 20.2685C85.8544 20.4655 86.2692 20.564 86.7427 20.564C87.22 20.564 87.6347 20.4655 87.987 20.2685C88.3431 20.0715 88.6177 19.8007 88.8109 19.456C89.0078 19.1113 89.1063 18.7174 89.1063 18.2742V10.9276ZM93.5453 25.8367V13.8367H95.9316V15.3026H96.0396C96.1456 15.0678 96.299 14.8291 96.4998 14.5867C96.7043 14.3405 96.9695 14.1359 97.2953 13.9731C97.6248 13.8064 98.0339 13.7231 98.5225 13.7231C99.1589 13.7231 99.746 13.8897 100.284 14.2231C100.822 14.5526 101.252 15.0507 101.574 15.7174C101.896 16.3803 102.057 17.2117 102.057 18.2117C102.057 19.1852 101.899 20.0071 101.585 20.6776C101.274 21.3443 100.85 21.8499 100.312 22.1946C99.7782 22.5356 99.1797 22.706 98.5168 22.706C98.0471 22.706 97.6475 22.6284 97.318 22.4731C96.9922 22.3178 96.7252 22.1227 96.5168 21.8878C96.3085 21.6492 96.1494 21.4087 96.0396 21.1662H95.9657V25.8367H93.5453ZM95.9146 18.2003C95.9146 18.7193 95.9865 19.1719 96.1305 19.5583C96.2744 19.9446 96.4828 20.2458 96.7555 20.4617C97.0282 20.6738 97.3596 20.7799 97.7498 20.7799C98.1437 20.7799 98.4771 20.6719 98.7498 20.456C99.0225 20.2363 99.229 19.9333 99.3691 19.5469C99.5131 19.1568 99.585 18.7079 99.585 18.2003C99.585 17.6965 99.515 17.2534 99.3748 16.8708C99.2346 16.4882 99.0282 16.189 98.7555 15.9731C98.4828 15.7571 98.1475 15.6492 97.7498 15.6492C97.3559 15.6492 97.0225 15.7534 96.7498 15.9617C96.4809 16.17 96.2744 16.4655 96.1305 16.8481C95.9865 17.2306 95.9146 17.6814 95.9146 18.2003Z" fill="#FF6A6A"></path></svg></div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 cursor-pointer"><path d="M11.8148 10L18.6082 3.20664C18.7308 3.08824 18.8285 2.94662 18.8958 2.79003C18.9631 2.63345 18.9985 2.46503 19 2.29461C19.0014 2.1242 18.969 1.95519 18.9044 1.79746C18.8399 1.63973 18.7446 1.49642 18.6241 1.37592C18.5036 1.25541 18.3603 1.16011 18.2025 1.09557C18.0448 1.03104 17.8758 0.998568 17.7054 1.00005C17.535 1.00153 17.3666 1.03694 17.21 1.1042C17.0534 1.17147 16.9118 1.26924 16.7934 1.39183L10 8.18519L3.20664 1.39183C2.96458 1.15803 2.64037 1.02867 2.30385 1.03159C1.96733 1.03452 1.64542 1.1695 1.40746 1.40746C1.1695 1.64542 1.03452 1.96733 1.03159 2.30385C1.02867 2.64037 1.15803 2.96458 1.39183 3.20664L8.18519 10L1.39183 16.7934C1.26924 16.9118 1.17147 17.0534 1.1042 17.21C1.03694 17.3666 1.00153 17.535 1.00005 17.7054C0.998568 17.8758 1.03104 18.0448 1.09557 18.2025C1.16011 18.3603 1.25541 18.5036 1.37592 18.6241C1.49642 18.7446 1.63973 18.8399 1.79746 18.9044C1.95519 18.969 2.1242 19.0014 2.29461 19C2.46503 18.9985 2.63345 18.9631 2.79003 18.8958C2.94662 18.8285 3.08824 18.7308 3.20664 18.6082L10 11.8148L16.7934 18.6082C17.0354 18.842 17.3596 18.9713 17.6961 18.9684C18.0327 18.9655 18.3546 18.8305 18.5925 18.5925C18.8305 18.3546 18.9655 18.0327 18.9684 17.6961C18.9713 17.3596 18.842 17.0354 18.6082 16.7934L11.8148 10Z" fill="#6B7280"></path></svg></div><div class="flex flex-col justify-center space-y-5 grow"><a href="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language#" class="flex items-center gap-x-2" rel="noopener noreferrer"><span class="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent text-gray-400 md:hover:bg-gray-100"><div class="flex items-center justify-center space-x-4 rounded" data-testid="flowbite-avatar"><div class="relative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" alt="" class="rounded-full h-8 w-8" data-testid="flowbite-avatar-img"><g clip-path="url(#clip0_3222_2324)"><rect width="32" height="32" rx="16" fill="#9CA3AF"></rect><circle cx="15.9998" cy="38.4002" r="19.2" fill="white"></circle><circle cx="15.9999" cy="11.9999" r="5.6" fill="white"></circle></g><rect x="1" y="1" width="30" height="30" rx="15" stroke="#9CA3AF" stroke-width="2"></rect><defs><clippath id="clip0_3222_2324"><rect width="32" height="32" rx="16" fill="white"></rect></clippath></defs></svg></div></div></span></a><hr class="border-b border-t-0 border-gray-200"><div class="flex flex-col gap-y-4 grow"><div><div class="w-fit" data-testid="flowbite-tooltip-target"><a href="https://earn.stackup.dev/" class="flex items-center gap-x-2" rel="noopener noreferrer"><span class="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent text-gray-400 md:hover:bg-gray-100"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8"><rect x="2" y="11.6445" width="23.0221" height="14.311" rx="5" fill="#D9D9D9"></rect><rect x="6.97803" y="6.6665" width="23.0221" height="14.311" rx="5" fill="black"></rect><ellipse cx="18.8001" cy="13.5105" rx="3.11109" ry="3.11109" fill="white"></ellipse></svg></span><span class="text-sm font-semibold inline-block md:hidden text-gray-600">Earn</span></a></div><div data-testid="flowbite-tooltip" tabindex="-1" class="absolute z-10 rounded-lg px-3 py-2 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-gray-900 text-white dark:bg-gray-700 whitespace-nowrap md:block hidden" id=":r10:" role="tooltip" style="position: absolute; top: 99px; left: 64px;"><div class="relative z-20">Earn</div><div class="absolute z-10 h-2 w-2 rotate-45 bg-gray-900 dark:bg-gray-700" data-testid="flowbite-tooltip-arrow" style="left: -4px; top: 14px;">&nbsp;</div></div></div><div><div class="w-fit" data-testid="flowbite-tooltip-target"><span class="flex items-center gap-x-2"><span class="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent text-gray-400 border border-gray-300"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8"><rect x="4" y="5.3335" width="20.3077" height="21.8585" rx="5" fill="#D8CAFB"></rect><rect x="7.69214" y="5.3335" width="20.3077" height="21.8585" rx="5" fill="#7C50F0"></rect><rect x="11.04" y="20.103" width="13.4451" height="3.97427" rx="1.98714" fill="white"></rect><path d="M13.8831 12.7929L16.8415 10.7447C17.8088 10.0751 17.3349 8.55811 16.1585 8.55811H13.8462C12.8266 8.55811 12 9.38466 12 10.4043V11.8063C12 12.7743 13.0872 13.3439 13.8831 12.7929Z" fill="white"></path></svg></span><span class="text-sm font-semibold inline-block md:hidden text-gray-900">Learn</span></span></div><div data-testid="flowbite-tooltip" tabindex="-1" class="absolute z-10 rounded-lg px-3 py-2 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-gray-900 text-white dark:bg-gray-700 whitespace-nowrap hidden" id=":r12:" role="tooltip" style="position: absolute; top: 173px; left: 64px;"><div class="relative z-20">Learn</div><div class="absolute z-10 h-2 w-2 rotate-45 bg-gray-900 dark:bg-gray-700" data-testid="flowbite-tooltip-arrow" style="left: -4px; top: 322px;">&nbsp;</div></div></div><div><div class="w-fit" data-testid="flowbite-tooltip-target"><a href="https://hackathon.stackup.dev/" class="flex items-center gap-x-2" rel="noopener noreferrer"><span class="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent text-gray-400 md:hover:bg-gray-100"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8"><path d="M14.2678 7.6665C15.0376 6.33317 16.9621 6.33317 17.7319 7.6665L21.6146 14.3914C22.3844 15.7248 21.4221 17.3914 19.8825 17.3914H12.1172C10.5776 17.3914 9.6154 15.7248 10.3852 14.3914L14.2678 7.6665Z" fill="#D9D9D9"></path><path d="M16.741 16.5509C16.299 16.8713 15.701 16.8713 15.259 16.5509L6.00348 9.84062C5.1472 9.21981 3.95286 9.86411 4.00144 10.9206L4.57838 23.4693C4.65585 25.1541 6.0444 26.4803 7.73104 26.4803H24.269C25.9556 26.4803 27.3442 25.1541 27.4216 23.4693L27.9986 10.9206C28.0471 9.86411 26.8528 9.21981 25.9965 9.84062L16.741 16.5509Z" fill="black"></path></svg></span><span class="text-sm font-semibold inline-block md:hidden text-gray-600">Hackathon</span></a></div><div data-testid="flowbite-tooltip" tabindex="-1" class="absolute z-10 rounded-lg px-3 py-2 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-gray-900 text-white dark:bg-gray-700 whitespace-nowrap md:block hidden" id=":r14:" role="tooltip" style="position: absolute; top: 211px; left: 64px;"><div class="relative z-20">Hackathon</div><div class="absolute z-10 h-2 w-2 rotate-45 bg-gray-900 dark:bg-gray-700" data-testid="flowbite-tooltip-arrow" style="left: -4px; top: 14px;">&nbsp;</div></div></div></div><hr class="border-b border-t-0 border-gray-200"><div class="inline-block md:hidden"><a href="https://auth.stackup.dev/web/my/account" rel="noopener noreferrer" class="flex items-center justify-start py-2 px-4 text-sm text-gray-700 cursor-pointer w-full hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="mr-2 h-4 w-4"><path fill-rule="evenodd" d="M17 10v1.1l1 .5.8-.8 1.4 1.4-.8.8.5 1H21v2h-1.1l-.5 1 .8.8-1.4 1.4-.8-.8a4 4 0 0 1-1 .5V20h-2v-1.1a4 4 0 0 1-1-.5l-.8.8-1.4-1.4.8-.8a4 4 0 0 1-.5-1H11v-2h1.1l.5-1-.8-.8 1.4-1.4.8.8a4 4 0 0 1 1-.5V10h2Zm.4 3.6c.4.4.6.8.6 1.4a2 2 0 0 1-3.4 1.4A2 2 0 0 1 16 13c.5 0 1 .2 1.4.6ZM5 8a4 4 0 1 1 8 .7 7 7 0 0 0-3.3 3.2A4 4 0 0 1 5 8Zm4.3 5H7a4 4 0 0 0-4 4v1c0 1.1.9 2 2 2h6.1a7 7 0 0 1-1.8-7Z" clip-rule="evenodd"></path></svg>Account Settings</a><button class="flex items-center justify-start py-2 px-4 text-sm text-red-600 cursor-pointer w-full hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="mr-2 h-4 w-4"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"></path></svg>Log out</button></div><div class="hidden md:flex justify-center"><button type="button" class="flex items-center" aria-expanded="false" aria-haspopup="menu" id=":r17:"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="text-gray-400 hover:text-gray-500 w-6 h-6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13v-2a1 1 0 0 0-1-1h-.8l-.7-1.7.6-.5a1 1 0 0 0 0-1.5L17.7 5a1 1 0 0 0-1.5 0l-.5.6-1.7-.7V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.8l-1.7.7-.5-.6a1 1 0 0 0-1.5 0L5 6.3a1 1 0 0 0 0 1.5l.6.5-.7 1.7H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.8l.7 1.7-.6.5a1 1 0 0 0 0 1.5L6.3 19a1 1 0 0 0 1.5 0l.5-.6 1.7.7v.8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.8l1.7-.7.5.6a1 1 0 0 0 1.5 0l1.4-1.4a1 1 0 0 0 0-1.5l-.6-.5.7-1.7h.8a1 1 0 0 0 1-1Z"></path><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></button></div></div></div></nav></div>
+  <form class="button_to" method="post" action="https://earn.stackup.dev/logout?installation_gid"><button data-turbo="false" data-sidebar-target="logout" class="hidden" type="submit">Log Out</button><input type="hidden" name="authenticity_token" value="n3dhWTweI5pntiYXXBXf3yEClsvGAg8SZH7jik_k5C7XLfVaLBRgigDxS--r-Wyh0xL7CC1_YV9luNb8XcR_IQ" autocomplete="off"></form>
+</div>
+
+
+      <div id="top" class="w-full pl-0 md:pl-[72px] z-0">
+        <nav class="bg-white fixed w-full right-0 z-40 px-0 py-4 md:pl-[72px] border-b border-grayscale-8">
+  <div class="mx-auto container 2xl:max-w-full max-w-7xl">
+    <div class="relative flex justify-between pl-[52px] md:pl-0">
+      <div class="flex w-full items-center lg:pr-10 pr-5">
+        <div class="flex flex-1 items-center lg:pl-10 md:pl-5 pl-4 md:border-none border-l border-grayscale-8">
+          <div class="sm:items-stretch sm:justify-start lg:mr-10 mr-4">
+            <a class="flex gap-x-3 flex-shrink-0 items-center" href="https://earn.stackup.dev/learn">
+              <img class="w-10" src="./Learn_files/learn-logomark-color-5457110daf3df46b2e34f7b908670d3137534ff4be8f4bc198158ad006cdad8c.svg">
+              <img class="lg:block hidden" src="./Learn_files/learn-a3795321ea0da38a3a47a4ef95b63dd2fae4dea6ec951b22713b1874c7859ea7.svg">
+</a>          </div>
+            <div class="sm:flex hidden space-x-2 w-fit font-semibold items-center text-grayscale-5">
+              <a class="cursor-pointer flex px-6 py-2 hover:px-[23px] hover:border hover:border-grayscale-8 rounded-3xl" href="https://earn.stackup.dev/learn">Home</a>
+              <a class="cursor-pointer flex rounded-3xl bg-grayscale-9 px-6 py-2 text-grayscale-2" href="https://earn.stackup.dev/learn/pathways">Explore</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4 lg:space-x-10 text-base">
+            <div class="p-2" data-controller="dropdown">
+              <button type="button" class="align-middle" data-action="dropdown#toggle click@window-&gt;dropdown#hide">
+                <img src="./Learn_files/hamburger-menu-73bc6ea443379ca518ccc203e8748916ab7cc5edb204bd955aa65f2df77172d8.svg">
+              </button>
+              <div data-dropdown-target="menu" class="flex flex-col hidden transition transform origin-top-right absolute top-14 mt-px md:right-6 right-0 pb-4 w-full md:max-w-xs bg-white shadow-around font-semibold" data-transition-enter-from="opacity-0 scale-95" data-transition-enter-to="opacity-100 scale-100" data-transition-leave-from="opacity-100 scale-100" data-transition-leave-to="opacity-0 scale-95">
+                <div class="px-6 py-4 flex space-x-3 items-center border-b border-grayscale-8">
+                  <img src="./Learn_files/avatar-default-adf2e890d2f63d886da4e97e203dd38a55323798ebb0c1d9d024ad0b45c2d99b.svg">
+                  <span>mrbeast</span>
+                </div>
+                <div class="flex flex-col py-2 sm:hidden block border-b border-grayscale-8">
+                  <a class="hover:bg-grayscale-9 px-6 py-3" href="https://earn.stackup.dev/learn">Home</a>
+                  <a class="px-6 py-3 bg-grayscale-9" href="https://earn.stackup.dev/learn/pathways">Explore</a>
+                </div>
+                <div class="flex flex-col py-2">
+                    <a class="hover:bg-grayscale-9 px-6 py-3" href="https://earn.stackup.dev/learn/account">My Profile</a>
+                      <a class="hover:bg-grayscale-9 px-6 py-3" href="https://earn.stackup.dev/learn/journeys/tutorials">My Progress</a>
+
+                  <a class="hover:bg-grayscale-9 px-6 py-3" target="_blank" href="https://tribegroup.notion.site/StackUp-Help-Centre-Articles-2025263ef45a801b8539e63065d825b1?pvs=74">Help Center</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+        <main class="mx-auto pt-16">
+
+          <div class="flex fixed left-0 right-0 pl-20 flex-col z-30" data-inline-flash-target="output"></div>
+
+          
+
+<turbo-frame autoscroll="true" data-autoscroll-block="start" data-autoscroll-behavior="smooth" id="pathways" src="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language" complete="">
+  <div class="max-w-6xl mx-5 sm:mx-8 md:mx-9 xl:mx-auto sm:py-5 pb-5" data-controller="reveal scroll-spy anchor-to-scroll tooltip" data-scroll-spy-highlight-class="fill-grayscale-3" data-scroll-spy-default-class="fill-grayscale-7" data-scroll-spy-active-class="bg-grayscale-9 rounded-md">
+      <div class="flex flex-col space-y-5 pt-0 sm:pt-5">
+        <div class="hidden sm:flex items-center text-sm"><a class="hover:underline hover:font-semibold max-w-[200px] truncate " data-turbo-frame="_top" href="https://earn.stackup.dev/learn/pathways">Pathways</a><span class="mx-1"><svg width="12" height="12" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill_rule="evenodd" clip_rule="evenodd" d="M0.910765 13.9518C0.585328 13.6264 0.585328 13.0988 0.910765 12.7733L6.15484 7.52926L0.910764 2.28518C0.585327 1.95974 0.585327 1.4321 0.910764 1.10667C1.2362 0.78123 1.76384 0.78123 2.08928 1.10667L7.92261 6.94C8.24805 7.26544 8.24805 7.79307 7.92261 8.11851L2.08928 13.9518C1.76384 14.2773 1.2362 14.2773 0.910765 13.9518Z" fill="#333333"></path></svg></span><a class="hover:underline hover:font-semibold max-w-[200px] truncate " data-turbo-frame="_top" href="https://earn.stackup.dev/learn/pathways/data-science">Data Science</a><span class="mx-1"><svg width="12" height="12" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill_rule="evenodd" clip_rule="evenodd" d="M0.910765 13.9518C0.585328 13.6264 0.585328 13.0988 0.910765 12.7733L6.15484 7.52926L0.910764 2.28518C0.585327 1.95974 0.585327 1.4321 0.910764 1.10667C1.2362 0.78123 1.76384 0.78123 2.08928 1.10667L7.92261 6.94C8.24805 7.26544 8.24805 7.79307 7.92261 8.11851L2.08928 13.9518C1.76384 14.2773 1.2362 14.2773 0.910765 13.9518Z" fill="#333333"></path></svg></span><div class="max-w-[200px] truncate ">Unleashing Julia: A Beginner's Guide to the Fastest Programming Language</div></div>
+
+        
+
+
+        <div class="flex pb-7 items-end space-x-6">
+          <div class="flex flex-col space-y-10 max-w-4xl w-full pb-3">
+            <div class="flex flex-col space-y-4">
+              <div class="flex flex-col space-y-2">
+                <span class="text-grayscale-6 text-lg font-bold">Module</span>
+                <h1 class="text-[28px] font-bold">Unleashing Julia: A Beginner's Guide to the Fastest Programming Language</h1>
+              </div>
+            </div>
+            
+              <div class="flex space-x-6">
+                <div class="flex space-x-3 items-center">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14 23.3334C14 23.3334 14 7.00002 14 7.00002C14 7.00002 11.6666 4.66669 9.33331 4.66669C6.99998 4.66669 3.49998 7.00002 3.49998 7.00002C3.49998 7.00002 3.49998 23.3334 3.49998 23.3334C3.49998 23.3334 6.99997 21 9.33331 21C11.6667 21 14 23.3334 14 23.3334Z" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14 23.3334C14 23.3334 14 7.00002 14 7.00002C14 7.00002 16.3334 4.66669 18.6667 4.66669C21 4.66669 24.5 7.00002 24.5 7.00002C24.5 7.00002 24.5 23.3334 24.5 23.3334C24.5 23.3334 21 21 18.6667 21C16.3333 21 14 23.3334 14 23.3334Z" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                  <span class="capitalize">3 tutorials</span>
+                </div>
+                <div class="flex space-x-3 items-center">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.33337 14L2.33337 24.5H7.00004V14H2.33337Z" stroke="#777777" stroke-linecap="round"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M21.3331 3.5V24.5H25.9998V3.5H21.3331Z" stroke="#777777" stroke-linecap="round"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6665 8.16797L11.6665 24.5013H16.3332V8.16797H11.6665Z" stroke="#777777" stroke-linecap="round"></path>
+                  </svg>
+                  <span class="capitalize">beginner</span>
+                </div>
+              </div>
+
+              <div class="text-grayscale-2"><div class="markdown-body"><p>Learn the fastest programming language for data science!</p>
+</div></div>
+
+              <div class="flex flex-col lg:flex-row w-full gap-y-6 gap-x-0 lg:gap-x-6 justify-start">
+                    <a data-turbo-action="advance" class="primary-dark-button w-full lg:w-1/2 py-3 px-8 inline-flex justify-center items-center text-xl text-white" href="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language/tutorials/tutorial-1-show-what-julia-can-do">
+                        <span>Start Learning</span>
+</a>
+                <div class="flex items-end lg:w-1/2 w-full ">
+                  <a class="inline-flex items-center gap-x-4 rounded-md border border-grayscale-2 text-xl font-semibold text-white px-4 py-2 w-full lg:max-w-96 justify-center hover:bg-grayscale-8" target="blank" href="https://discord.com/channels/895564164783808523/1060491074109456454">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                      <g clip-path="url(#clip0_1422_61826)">
+                        <path d="M27.607 6.03114C25.5046 5.0686 23.2851 4.38574 21.0052 4C20.6932 4.55772 20.4109 5.13153 20.1595 5.71905C17.731 5.35309 15.2613 5.35309 12.8328 5.71905C12.5813 5.13159 12.299 4.55778 11.9871 4C9.70578 4.38899 7.4848 5.07348 5.38026 6.03618C1.20219 12.2177 0.069585 18.2457 0.635889 24.1881C3.08267 25.9959 5.82131 27.3707 8.73277 28.2529C9.38835 27.3712 9.96845 26.4358 10.4669 25.4566C9.52015 25.103 8.60634 24.6667 7.73608 24.1529C7.96512 23.9867 8.18912 23.8156 8.40558 23.6495C10.9378 24.8403 13.7017 25.4578 16.4999 25.4578C19.2982 25.4578 22.0621 24.8403 24.5943 23.6495C24.8133 23.8282 25.0373 23.9993 25.2638 24.1529C24.3919 24.6676 23.4764 25.1047 22.5279 25.4591C23.0258 26.4378 23.6059 27.3725 24.2621 28.2529C27.176 27.3743 29.9168 26.0001 32.364 24.1906C33.0285 17.2993 31.2289 11.3267 27.607 6.03114ZM11.1842 20.5336C9.60614 20.5336 8.30238 19.1014 8.30238 17.3396C8.30238 15.5778 9.56084 14.1331 11.1792 14.1331C12.7976 14.1331 14.0913 15.5778 14.0636 17.3396C14.0359 19.1014 12.7925 20.5336 11.1842 20.5336ZM21.8156 20.5336C20.235 20.5336 18.9363 19.1014 18.9363 17.3396C18.9363 15.5778 20.1948 14.1331 21.8156 14.1331C23.4365 14.1331 24.7202 15.5778 24.6925 17.3396C24.6648 19.1014 23.424 20.5336 21.8156 20.5336Z" fill="#999999"></path>
+                      </g>
+                      <defs>
+                        <clippath id="clip0_1422_61826">
+                          <rect width="32" height="32" fill="#999999" transform="translate(0.5)"></rect>
+                        </clippath>
+                      </defs>
+                    </svg>
+                    <span class="text-grayscale-2">Join us on Discord</span>
+</a>                </div>
+              </div>
+
+
+              <div class="flex items-center justify-between">
+                <div class="relative w-2/5 sm:w-3/5 lg:w-2/3 xl:w-3/4 flex items-center" data-controller="progress-bar" data-progress-bar-percentage-value="0%">
+                  <div class="absolute w-full bg-grayscale-7 rounded-full h-4"></div>
+                    <div class="absolute bg-grayscale-2 rounded-full h-4 test" data-progress-bar-target="completion" style="width: 0%;"></div>
+                </div>
+                <div class="text-grayscale-2 ml-3 sm:ml-2 inline-flex">
+                    <span class="font-semibold mr-1">0/3</span>
+                     tutorials
+                    completed
+                </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="flex flex-col gap-y-10">
+          
+              <div class="order-first sm:order-none">
+                <div class="relative pb-10" data-controller="reveal" data-reveal-hidden-class="hidden">
+                  <div class="flex lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 flex-col w-full lg:w-11/12">
+                    <div class="flex basis-5/6 lg:basis-1/3"><h3 class="text-xl lg:text-3xl font-bold lg:text-grayscale-2 text-grayscale-4">Helpful prior knowledge</h3></div>
+                    <div class="flex basis-full lg:basis-2/3" data-reveal-target="item">
+                      <div class="w-full"><div class="markdown-body"><p>nil</p>
+</div></div>
+                    </div>
+                  </div>
+                  <div class="absolute cursor-pointer right-0 top-0" data-action="click-&gt;reveal#toggle">
+                    <svg class="w-6 h-4" data-reveal-target="item" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 8.70711C15.3166 9.09763 14.6834 9.09763 14.2929 8.70711L8 2.41421L1.70711 8.70711C1.31658 9.09763 0.683417 9.09763 0.292893 8.70711C-0.0976314 8.31658 -0.0976313 7.68342 0.292894 7.29289L7.29289 0.292893C7.68342 -0.0976322 8.31658 -0.0976321 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711Z" fill="#555555"></path>
+                    </svg>
+                    <svg class="w-6 h-4 hidden" data-reveal-target="item" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L8 6.58579L14.2929 0.292893C14.6834 -0.0976311 15.3166 -0.0976311 15.7071 0.292893C16.0976 0.683417 16.0976 1.31658 15.7071 1.70711L8.70711 8.70711C8.31658 9.09763 7.68342 9.09763 7.29289 8.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="#555555"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <hr class="bg-grayscale-8">
+              </div>
+            
+              <div class="order-first sm:order-none">
+                <div class="relative pb-10" data-controller="reveal" data-reveal-hidden-class="hidden">
+                  <div class="flex lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 flex-col w-full lg:w-11/12">
+                    <div class="flex basis-5/6 lg:basis-1/3"><h3 class="text-xl lg:text-3xl font-bold lg:text-grayscale-2 text-grayscale-4">Learning Outcomes</h3></div>
+                    <div class="flex basis-full lg:basis-2/3" data-reveal-target="item">
+                      <div class="w-full"><div class="markdown-body"><p>You will be able to:</p>
+
+<ul>
+<li>Install Julia the recommended way.</li>
+<li>Write basic Julia syntax.</li>
+<li>Learn about multiple dispatch.</li>
+<li>Interact and learn Pluto.jl notebooks.</li>
+</ul>
+</div></div>
+                    </div>
+                  </div>
+                  <div class="absolute cursor-pointer right-0 top-0" data-action="click-&gt;reveal#toggle">
+                    <svg class="w-6 h-4" data-reveal-target="item" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 8.70711C15.3166 9.09763 14.6834 9.09763 14.2929 8.70711L8 2.41421L1.70711 8.70711C1.31658 9.09763 0.683417 9.09763 0.292893 8.70711C-0.0976314 8.31658 -0.0976313 7.68342 0.292894 7.29289L7.29289 0.292893C7.68342 -0.0976322 8.31658 -0.0976321 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711Z" fill="#555555"></path>
+                    </svg>
+                    <svg class="w-6 h-4 hidden" data-reveal-target="item" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L8 6.58579L14.2929 0.292893C14.6834 -0.0976311 15.3166 -0.0976311 15.7071 0.292893C16.0976 0.683417 16.0976 1.31658 15.7071 1.70711L8.70711 8.70711C8.31658 9.09763 7.68342 9.09763 7.29289 8.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="#555555"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <hr class="bg-grayscale-8">
+              </div>
+
+          <div class="relative" data-controller="reveal" data-reveal-hidden-class="hidden">
+            <div class="flex lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 flex-col w-full lg:w-11/12">
+              <div class="flex flex-col gap-y-5 basis-5/6 lg:basis-1/3">
+                <div class="flex flex-row gap-x-3 md:gap-x-4 items-center max-h-9">
+                    <h3 class="text-xl lg:text-3xl font-bold lg:text-grayscale-2 text-grayscale-4">Tutorials</h3>
+                    <p class="text-sm md:text-lg">Total: 3</p>
+                </div>
+              </div>
+              <div class="flex basis-full lg:basis-2/3" data-reveal-target="item">
+                <ul class="w-full flex flex-col mt-6 lg:mt-0 gap-y-6">
+                  
+<li class="pb-10 border-b border-grayscale-8 last:border-b-transparent">
+  
+    <div class="flex flex-col w-full space-y-4">
+      <div class="border-l border-grayscale-8 pl-4 lg:pl-0 lg:border-l-0 space-y-2 lg:space-y-4">
+        <div class="flex flex-col">
+          <label class="hidden lg:block text-grayscale-6 font-bold">Tutorial</label>
+          <h3 class="font-bold text-xl lg:mt-2">Tutorial 1 - Show What Julia Can Do</h3>
+            <div class="flex space-x-2 items-center mt-2">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.33337" y="2.33333" width="23.3333" height="23.3333" stroke="#777777" stroke-width="1.16667" stroke-linejoin="round"></rect>
+                <path d="M12.8334 8.16667H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path d="M12.8334 14H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path d="M12.8334 19.8333H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 9.33333C8.811 9.33333 9.33333 8.811 9.33333 8.16667C9.33333 7.52233 8.811 7 8.16667 7C7.52233 7 7 7.52233 7 8.16667C7 8.811 7.52233 9.33333 8.16667 9.33333Z" fill="#777777"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 15.1667C8.811 15.1667 9.33333 14.6443 9.33333 14C9.33333 13.3557 8.811 12.8333 8.16667 12.8333C7.52233 12.8333 7 13.3557 7 14C7 14.6443 7.52233 15.1667 8.16667 15.1667Z" fill="#777777"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 21C8.811 21 9.33333 20.4777 9.33333 19.8333C9.33333 19.189 8.811 18.6667 8.16667 18.6667C7.52233 18.6667 7 19.189 7 19.8333C7 20.4777 7.52233 21 8.16667 21Z" fill="#777777"></path>
+              </svg>
+              <span>9 steps</span>
+            </div>
+        </div>
+
+          <div class="flex flex-col py-5">
+            <label class="font-bold">Description</label>
+            <div class="w-full overflow-y-scroll mt-2"><div class="markdown-body"><p>In this tutorial, you will tour and learn Julia's syntax such as declaring variables, writing functions, and calling functions. You will also learn how to write collections such as arrays and dictionaries, and also how to write loops such as for-loops and while-loops.</p>
+
+<p>Along the way, you will write small programs in Julia to further familiarise yourself with its syntax.</p>
+
+<p>You will also learn to use the package manager and the Julia REPL which makes Julia more fun to use!</p>
+
+<p>Start your first steps into Julia here.</p>
+
+<p>For technical help on the StackUp platform &amp; quest-related questions, <a href="https://discord.com/invite/E2DztfSNaV" target="_blank"><strong><u>join our Discord</u></strong></a>, head to the 🆘 | quest-help-forum channel and look for the correct thread to ask your question.</p>
+</div></div>
+          </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6 space-y-5 lg:space-y-0">
+          <a data-turbo-action="advance" class="w-full lg:w-fit hover:bg-gray-200 border border-gray-500 py-2 px-6 rounded-lg flex lg:space-x-4 sm:space-x-48 items-center justify-between" href="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language/tutorials/tutorial-1-show-what-julia-can-do">
+            <span>View Tutorial</span>
+            <img src="./Learn_files/arrow-black-icon-0a41cc2911b2066c8701b736242282b8c42a8555aeb541de919c5f2a97a83f0f.svg">
+</a>        
+      </div>
+    </div>
+</li>
+
+<li class="pb-10 border-b border-grayscale-8 last:border-b-transparent">
+  
+    <div class="flex flex-col w-full space-y-4">
+      <div class="border-l border-grayscale-8 pl-4 lg:pl-0 lg:border-l-0 space-y-2 lg:space-y-4">
+        <div class="flex flex-col">
+          <label class="hidden lg:block text-grayscale-6 font-bold">Tutorial</label>
+          <h3 class="font-bold text-xl lg:mt-2">Tutorial 2 - Type System and Multiple Dispatch</h3>
+            <div class="flex space-x-2 items-center mt-2">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.33337" y="2.33333" width="23.3333" height="23.3333" stroke="#777777" stroke-width="1.16667" stroke-linejoin="round"></rect>
+                <path d="M12.8334 8.16667H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path d="M12.8334 14H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path d="M12.8334 19.8333H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 9.33333C8.811 9.33333 9.33333 8.811 9.33333 8.16667C9.33333 7.52233 8.811 7 8.16667 7C7.52233 7 7 7.52233 7 8.16667C7 8.811 7.52233 9.33333 8.16667 9.33333Z" fill="#777777"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 15.1667C8.811 15.1667 9.33333 14.6443 9.33333 14C9.33333 13.3557 8.811 12.8333 8.16667 12.8333C7.52233 12.8333 7 13.3557 7 14C7 14.6443 7.52233 15.1667 8.16667 15.1667Z" fill="#777777"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 21C8.811 21 9.33333 20.4777 9.33333 19.8333C9.33333 19.189 8.811 18.6667 8.16667 18.6667C7.52233 18.6667 7 19.189 7 19.8333C7 20.4777 7.52233 21 8.16667 21Z" fill="#777777"></path>
+              </svg>
+              <span>6 steps</span>
+            </div>
+        </div>
+
+          <div class="flex flex-col py-5">
+            <label class="font-bold">Description</label>
+            <div class="w-full overflow-y-scroll mt-2"><div class="markdown-body"><p>In this tutorial, you will learn about Julia's type system and multiple dispatch. With multiple dispatch, you will learn how to write generic functions with multiple associated methods with different argument types.</p>
+
+<p>You will learn the differences between an abstract type and a concrete type. Lastly, you will learn how to write your own custom abstract types as well as its subtypes.</p>
+
+<p>Let's dive in and learn more about this beautiful language, Julia.</p>
+
+<p>For technical help on the StackUp platform &amp; quest-related questions, <a href="https://discord.com/invite/E2DztfSNaV" target="_blank"><strong><u>join our Discord</u></strong></a>, head to the 🆘 | quest-help-forum channel and look for the correct thread to ask your question.</p>
+</div></div>
+          </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6 space-y-5 lg:space-y-0">
+          <a data-turbo-action="advance" class="w-full lg:w-fit hover:bg-gray-200 border border-gray-500 py-2 px-6 rounded-lg flex lg:space-x-4 sm:space-x-48 items-center justify-between" href="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language/tutorials/tutorial-2-type-system-and-multiple-dispatch">
+            <span>View Tutorial</span>
+            <img src="./Learn_files/arrow-black-icon-0a41cc2911b2066c8701b736242282b8c42a8555aeb541de919c5f2a97a83f0f.svg">
+</a>        
+      </div>
+    </div>
+</li>
+
+<li class="pb-10 border-b border-grayscale-8 last:border-b-transparent">
+  
+    <div class="flex flex-col w-full space-y-4">
+      <div class="border-l border-grayscale-8 pl-4 lg:pl-0 lg:border-l-0 space-y-2 lg:space-y-4">
+        <div class="flex flex-col">
+          <label class="hidden lg:block text-grayscale-6 font-bold">Tutorial</label>
+          <h3 class="font-bold text-xl lg:mt-2">Tutorial 3 - Interactivity with Pluto.jl</h3>
+            <div class="flex space-x-2 items-center mt-2">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.33337" y="2.33333" width="23.3333" height="23.3333" stroke="#777777" stroke-width="1.16667" stroke-linejoin="round"></rect>
+                <path d="M12.8334 8.16667H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path d="M12.8334 14H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path d="M12.8334 19.8333H19.8334" stroke="#777777" stroke-width="1.16667" stroke-linecap="round"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 9.33333C8.811 9.33333 9.33333 8.811 9.33333 8.16667C9.33333 7.52233 8.811 7 8.16667 7C7.52233 7 7 7.52233 7 8.16667C7 8.811 7.52233 9.33333 8.16667 9.33333Z" fill="#777777"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 15.1667C8.811 15.1667 9.33333 14.6443 9.33333 14C9.33333 13.3557 8.811 12.8333 8.16667 12.8333C7.52233 12.8333 7 13.3557 7 14C7 14.6443 7.52233 15.1667 8.16667 15.1667Z" fill="#777777"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.16667 21C8.811 21 9.33333 20.4777 9.33333 19.8333C9.33333 19.189 8.811 18.6667 8.16667 18.6667C7.52233 18.6667 7 19.189 7 19.8333C7 20.4777 7.52233 21 8.16667 21Z" fill="#777777"></path>
+              </svg>
+              <span>6 steps</span>
+            </div>
+        </div>
+
+          <div class="flex flex-col py-5">
+            <label class="font-bold">Description</label>
+            <div class="w-full overflow-y-scroll mt-2"><div class="markdown-body"><p>Pluto.jl is a modern, interactive development environment for the Julia programming language. It combines the power of Julia with the convenience of a notebook interface, making it easy to explore, analyze, and visualize data, and rapidly develop and test code.</p>
+
+<p>You will learn some basic Pluto.jl features in this quest!</p>
+
+<p>For technical help on the StackUp platform &amp; quest-related questions, <a href="https://discord.com/invite/E2DztfSNaV" target="_blank"><strong><u>join our Discord</u></strong></a>, head to the 🆘 | quest-help-forum channel and look for the correct thread to ask your question.</p>
+
+<h3><strong>Prerequisites</strong></h3>
+
+<p>Required to have finished Tutorials/Quests 1 and 2 on Learn.</p>
+</div></div>
+          </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6 space-y-5 lg:space-y-0">
+          <a data-turbo-action="advance" class="w-full lg:w-fit hover:bg-gray-200 border border-gray-500 py-2 px-6 rounded-lg flex lg:space-x-4 sm:space-x-48 items-center justify-between" href="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language/tutorials/tutorial-3-interactivity-with-pluto-dot-jl">
+            <span>View Tutorial</span>
+            <img src="./Learn_files/arrow-black-icon-0a41cc2911b2066c8701b736242282b8c42a8555aeb541de919c5f2a97a83f0f.svg">
+</a>        
+      </div>
+    </div>
+</li>
+
+                </ul>
+              </div>
+            </div>
+            <div class="absolute right-0 top-0 cursor-pointer" data-action="click-&gt;reveal#toggle">
+              <svg class="w-6 h-4" data-reveal-target="item" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 8.70711C15.3166 9.09763 14.6834 9.09763 14.2929 8.70711L8 2.41421L1.70711 8.70711C1.31658 9.09763 0.683417 9.09763 0.292893 8.70711C-0.0976314 8.31658 -0.0976313 7.68342 0.292894 7.29289L7.29289 0.292893C7.68342 -0.0976322 8.31658 -0.0976321 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711Z" fill="#555555"></path>
+              </svg>
+              <svg class="w-6 h-4 hidden" data-reveal-target="item" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L8 6.58579L14.2929 0.292893C14.6834 -0.0976311 15.3166 -0.0976311 15.7071 0.292893C16.0976 0.683417 16.0976 1.31658 15.7071 1.70711L8.70711 8.70711C8.31658 9.09763 7.68342 9.09763 7.29289 8.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="#555555"></path>
+              </svg>
+            </div>
+          </div>
+
+          <hr class="bg-grayscale-8">
+        </div>
+
+        <div class="flex flex-col space-y-4 items-center lg:items-start pb-6">
+          <div class="flex space-x-3">
+  <img alt="Help Center" src="./Learn_files/help-center-black-8c4522ccef90d19bfcad0cd68a06884dddd2cc2c75bbb3500f4e4ec494640cdf.svg">
+  <span class="font-semibold">Need help?</span>
+</div>
+<p class="text-sm text-center">Find articles to support you through your journey or chat with our support team.</p>
+<a target="_blank" class="cursor-pointer rounded-lg border border-grayscale-2 px-6 py-2 flex items-center justify-center space-x-2" href="https://tribegroup.notion.site/StackUp-Help-Centre-Articles-2025263ef45a801b8539e63065d825b1?pvs=74">
+  <span class="font-semibold">Help Center</span>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.4398 6.23982H5.27979V18.7198H17.7598V10.5598M19.6798 4.31982L10.0798 13.9198" stroke="#101112" stroke-width="1.2"></path>
+    <path d="M15.3599 4.31982H19.6799V8.63982" stroke="#101112" stroke-width="1.2"></path>
+  </svg>
+</a>
+        </div>
+      </div>
+    </div>
+  
+</turbo-frame>
+<a href="https://earn.stackup.dev/learn/pathways/data-science/skills/julia-fundamentals/modules/unleashing-julia-a-beginners-guide-to-the-fastest-programming-language#top" data-controller="back-to-top scroll-to" data-scroll-to-behavior-value="smooth" class="fixed bottom-20 right-5 sm:right-10 xl:right-20 opacity-0 transform translate-y-5 transition-opacity duration-300 flex items-center bg-[#B8B8B8] rounded-md py-2 pl-2 pr-2 sm:pr-4 gap-x-1 hover:bg-grayscale-5 active:bg-grayscale-2 cursor-pointer" style="opacity: 0; transform: translateY(5rem);">
+  <img src="./Learn_files/top-white-icon-e69da5f6275f1a4369c700daedf4aed388d60d4ef84e00e43560e89f818a71fe.svg">
+  <div class="hidden sm:block text-white font-semibold">Top</div>
+</a>
+
+
+        </main>
+      </div>
+    </div>
+
+    <turbo-frame id="flash"></turbo-frame>
+
+    <turbo-frame id="modal"></turbo-frame>
+
+    <template data-inline-flash-target="template"></template>
+
+
+    <footer class="py-4 sm:py-6 lg:py-8 pl-0 md:pl-20">
+      <div class="w-full sm:px-7 lg:px-10 flex flex-col sm:flex-row space-y-8 sm:space-y-0 justify-between items-center sm:items-end">
+        <div class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 items-center sm:items-start lg:items-center text-sm">
+          <div class="flex justify-center text-base text-grayscale-5">
+            <p>© <time datetime="2025-09-03T00:00:00+08:00">2025</time> Learn by StackUp</p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center sm:justify-center gap-y-3 sm:space-x-6 font-semibold text-grayscale-2">
+            <a target="_blank" href="https://tribegroup.notion.site/StackUp-Help-Centre-Articles-2025263ef45a801b8539e63065d825b1?pvs=74">
+              <span class="hover:underline">Help Centre</span>
+</a>            <a target="_blank" href="https://stackup.dev/terms">
+              <span class="hover:underline">Terms of Service</span>
+</a>            <a target="_blank" href="https://stackup.dev/privacy">
+              <span class="hover:underline">Privacy Policy</span>
+</a>          </div>
+        </div>
+
+        <div data-controller="social-icon-list">
+  <div data-social-icon-list-target="list"><ul class="flex items-center gap-4"><li><a href="https://t.me/+yLz1VKd8grk2MGUy" class="flex items-center gap-x-2 hover:cursor-pointer" rel="noreferrer" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="w-5"><g clip-path="url(#clip0_2180_21862)"><path d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z" fill="#6B7280"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.5266 9.89446C7.4418 8.62435 9.38573 7.78702 10.3584 7.38246C13.1355 6.22737 13.7125 6.02672 14.0887 6.02009C14.1714 6.01863 14.3563 6.03913 14.4762 6.13635C14.5773 6.21844 14.6052 6.32934 14.6185 6.40717C14.6318 6.485 14.6484 6.6623 14.6352 6.80083C14.4847 8.38207 13.8335 12.2193 13.5022 13.9903C13.3621 14.7397 13.0861 14.991 12.8188 15.0156C12.2381 15.069 11.7972 14.6318 11.2347 14.2631C10.3546 13.6861 9.85735 13.327 9.00303 12.764C8.01572 12.1134 8.65575 11.7558 9.21842 11.1714C9.36567 11.0184 11.9243 8.69115 11.9739 8.48003C11.98 8.45362 11.9858 8.3552 11.9273 8.30323C11.8689 8.25126 11.7826 8.26903 11.7203 8.28316C11.632 8.3032 10.226 9.23253 7.50222 11.0711C7.10313 11.3452 6.74164 11.4787 6.41776 11.4717C6.06071 11.464 5.37388 11.2698 4.8633 11.1039C4.23705 10.9003 3.73932 10.7927 3.78266 10.4469C3.80524 10.2669 4.05321 10.0827 4.5266 9.89446Z" fill="white"></path></g><defs><clippath id="clip0_2180_21862"><rect width="20" height="20" fill="white"></rect></clippath></defs></svg></a></li><li><a href="https://twitter.com/StackUpHQ" class="flex items-center gap-x-2 hover:cursor-pointer" rel="noreferrer" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="w-5"><path d="M11.3723 8.7237L17.4434 1.6665H16.0047L10.7332 7.79417L6.5228 1.6665H1.66663L8.03355 10.9326L1.66663 18.3332H3.10537L8.67227 11.8621L13.1187 18.3332H17.9749L11.3723 8.7237ZM9.40172 11.0143L8.75662 10.0916L3.62377 2.74957H5.8336L9.97586 8.67479L10.621 9.59748L16.0054 17.2994H13.7956L9.40172 11.0143Z" fill="#6B7280"></path></svg></a></li><li><a href="https://discord.com/invite/3x3h2z6A63" class="flex items-center gap-x-2 hover:cursor-pointer" rel="noreferrer" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="w-5"><path d="M16.9419 3.76946C15.6279 3.16787 14.2407 2.74108 12.8158 2.5C12.6208 2.84857 12.4443 3.20721 12.2872 3.5744C10.7694 3.34568 9.22584 3.34568 7.70801 3.5744C7.55079 3.20725 7.37437 2.84861 7.17946 2.5C5.75361 2.74312 4.3655 3.17092 3.05016 3.77261C0.43887 7.63606 -0.269009 11.4036 0.0849305 15.1176C1.61417 16.2474 3.32582 17.1067 5.14548 17.6581C5.55522 17.107 5.91778 16.5224 6.22933 15.9104C5.63759 15.6894 5.06646 15.4167 4.52255 15.0955C4.6657 14.9917 4.8057 14.8847 4.94098 14.7809C6.52364 15.5252 8.25103 15.9111 9.99996 15.9111C11.7489 15.9111 13.4763 15.5252 15.0589 14.7809C15.1958 14.8926 15.3358 14.9996 15.4774 15.0955C14.9324 15.4172 14.3602 15.6904 13.7675 15.912C14.0786 16.5236 14.4412 17.1078 14.8513 17.6581C16.6725 17.1089 18.3855 16.25 19.915 15.1191C20.3303 10.8121 19.2055 7.07919 16.9419 3.76946ZM6.67765 12.8335C5.69134 12.8335 4.87649 11.9384 4.87649 10.8372C4.87649 9.7361 5.66302 8.83316 6.6745 8.83316C7.68598 8.83316 8.49454 9.7361 8.47724 10.8372C8.45993 11.9384 7.68284 12.8335 6.67765 12.8335ZM13.3223 12.8335C12.3344 12.8335 11.5227 11.9384 11.5227 10.8372C11.5227 9.7361 12.3092 8.83316 13.3223 8.83316C14.3353 8.83316 15.1376 9.7361 15.1203 10.8372C15.103 11.9384 14.3275 12.8335 13.3223 12.8335Z" fill="#6B7280"></path></svg></a></li><li><a href="https://www.linkedin.com/company/stackupofficial/" class="flex items-center gap-x-2 hover:cursor-pointer" rel="noreferrer" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="w-5"><g clip-path="url(#clip0_193_150733)"><path d="M4.15 2.08333C4.15 3.23417 3.225 4.16667 2.08333 4.16667C0.941667 4.16667 0.0166667 3.23417 0.0166667 2.08333C0.0166667 0.933333 0.941667 0 2.08333 0C3.225 0 4.15 0.933333 4.15 2.08333ZM4.16667 5.83333H0V19.1667H4.16667V5.83333ZM10.8183 5.83333H6.67833V19.1667H10.8192V12.1675C10.8192 8.27583 15.8433 7.9575 15.8433 12.1675V19.1667H20V10.7242C20 4.1575 12.565 4.39667 10.8183 7.62917V5.83333Z" fill="#6B7280"></path></g><defs><clippath id="clip0_193_150733"><rect width="20" height="20" fill="white"></rect></clippath></defs></svg></a></li></ul></div>
+</div>
+
+      </div>
+    </footer>
+  
+
+</body></html>
